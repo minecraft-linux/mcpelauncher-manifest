@@ -55,3 +55,6 @@
 [submodule "mcpelauncher-server"]
 	path = mcpelauncher-server
 	url = ../mcpelauncher-server.git
+[submodule "epoll-shim"]
+	path = epoll-shim
+	url = ../epoll-shim.git

@@ -30,6 +30,8 @@ add_subdirectory(libhybris)
 if (NOT APPLE)
     add_subdirectory(eglut)
     add_subdirectory(linux-gamepad)
+else()
+    add_subdirectory(epoll-shim)
 endif(NOT APPLE)
 
 add_subdirectory(game-window)
@@ -43,4 +45,3 @@ add_subdirectory(mcpelauncher-common)
 add_subdirectory(mcpelauncher-core)
 add_subdirectory(mcpelauncher-client)
 add_subdirectory(mcpelauncher-server)
-
