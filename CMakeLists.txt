@@ -5,12 +5,13 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+set(BUILD_TESTING OFF)
+
 if(APPLE)
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-apple-darwin")
 else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
-
 
 include(ext/json.cmake)
 include(ext/glfw.cmake)
@@ -25,8 +26,12 @@ add_subdirectory(daemon-utils/client)
 add_subdirectory(msa-daemon-client)
 
 add_subdirectory(libhybris)
-add_subdirectory(eglut)
-add_subdirectory(linux-gamepad)
+
+if (NOT APPLE)
+    add_subdirectory(eglut)
+    add_subdirectory(linux-gamepad)
+endif(NOT APPLE)
+
 add_subdirectory(game-window)
 add_subdirectory(file-picker)
 
