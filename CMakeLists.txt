@@ -5,7 +5,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(BUILD_TESTING OFF)
+option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
 
 if(APPLE)
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-apple-darwin")
