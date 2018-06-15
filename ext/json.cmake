@@ -8,4 +8,4 @@ ExternalProject_Add(
 ExternalProject_Get_Property(nlohmann_json_ext SOURCE_DIR)
 add_library(nlohmann_json INTERFACE IMPORTED)
 add_dependencies(nlohmann_json nlohmann_json_ext)
-target_include_directories(nlohmann_json INTERFACE ${SOURCE_DIR})
+set_property(TARGET nlohmann_json PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${SOURCE_DIR})
