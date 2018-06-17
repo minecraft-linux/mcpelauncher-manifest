@@ -55,3 +55,9 @@
 [submodule "mcpelauncher-server"]
 	path = mcpelauncher-server
 	url = ../mcpelauncher-server.git
+[submodule "epoll-shim"]
+	path = epoll-shim
+	url = ../epoll-shim.git
+[submodule "osx-elf-header"]
+	path = osx-elf-header
+	url = ../osx-elf-header.git
