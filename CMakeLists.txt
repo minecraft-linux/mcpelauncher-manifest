@@ -31,6 +31,7 @@ if (NOT APPLE)
     add_subdirectory(eglut)
     add_subdirectory(linux-gamepad)
 else()
+    add_subdirectory(osx-elf-header)
     add_subdirectory(epoll-shim)
 endif(NOT APPLE)
 
