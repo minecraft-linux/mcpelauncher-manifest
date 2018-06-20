@@ -11,7 +11,6 @@ else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
 
-
 include(ext/json.cmake)
 include(ext/glfw.cmake)
 
@@ -19,6 +18,7 @@ add_subdirectory(logger)
 add_subdirectory(base64)
 add_subdirectory(file-util)
 add_subdirectory(properties-parser)
+add_subdirectory(arg-parser)
 
 add_subdirectory(simple-ipc)
 add_subdirectory(daemon-utils/client)
