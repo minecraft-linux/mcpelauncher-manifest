@@ -11,7 +11,7 @@ else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
 
-add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin:${CMAKE_SOURCE_DIR}/mcpelauncher-proprietary")
+add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
 
 
 include(ext/json.cmake)

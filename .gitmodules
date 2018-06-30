@@ -61,6 +61,3 @@
 [submodule "mcpelauncher-linux-bin"]
 	path = mcpelauncher-linux-bin
 	url = ../mcpelauncher-linux-bin.git
-[submodule "mcpelauncher-proprietary"]
-	path = mcpelauncher-proprietary
-	url = ../mcpelauncher-proprietary.git
