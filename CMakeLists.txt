@@ -45,3 +45,8 @@ add_subdirectory(mcpelauncher-core)
 add_subdirectory(mcpelauncher-client)
 add_subdirectory(mcpelauncher-server)
 
+
+option(MSA_DAEMON_PATH "Additional paths in which the MSA daemon should be looked in. Relative to the application directory." )
+if (MSA_DAEMON_PATH)
+    target_compile_definitions(mcpelauncher-client PRIVATE -DMSA_DAEMON_PATH="${MSA_DAEMON_PATH}")
+endif()
