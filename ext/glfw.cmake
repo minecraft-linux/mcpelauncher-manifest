@@ -6,6 +6,7 @@ ExternalProject_Add(
         INSTALL_DIR ${CMAKE_BINARY_DIR}/ext/glfw
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/ext/glfw" "-DBUILD_SHARED_LIBS=OFF" "-DCMAKE_C_FLAGS=-m32" "-DCMAKE_LINK_FLAGS=-m32" "-DCMAKE_LIBRARY_ARCHITECTURE=${CMAKE_LIBRARY_ARCHITECTURE}"
 )
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/ext/glfw/include/)
 add_library(glfw3 STATIC IMPORTED)
 add_dependencies(glfw3 glfw3_ext)
 set_property(TARGET glfw3 PROPERTY IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/ext/glfw/lib/libglfw3.a)
