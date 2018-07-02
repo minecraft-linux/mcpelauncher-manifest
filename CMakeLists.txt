@@ -11,6 +11,8 @@ else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
 
+option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
+
 option(ENABLE_DEV_PATHS "Enables lookup in source directories for misc files required by the launcher. This should be disabled for package builds." ON)
 if (ENABLE_DEV_PATHS)
     add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
@@ -19,6 +21,11 @@ endif()
 
 include(ext/json.cmake)
 include(ext/glfw.cmake)
+
+if (APPLE)
+    add_subdirectory(osx-elf-header)
+    add_subdirectory(epoll-shim)
+endif()
 
 add_subdirectory(logger)
 add_subdirectory(base64)
@@ -31,10 +38,12 @@ add_subdirectory(daemon-utils/client)
 add_subdirectory(msa-daemon-client)
 
 add_subdirectory(libhybris)
-add_subdirectory(eglut)
-add_subdirectory(linux-gamepad)
-add_subdirectory(game-window)
 add_subdirectory(file-picker)
+add_subdirectory(game-window)
+if (GAMEWINDOW_SYSTEM STREQUAL "EGLUT")
+    add_subdirectory(eglut)
+    add_subdirectory(linux-gamepad)
+endif()
 
 add_subdirectory(cll-telemetry)
 
