@@ -55,3 +55,9 @@
 [submodule "mcpelauncher-server"]
 	path = mcpelauncher-server
 	url = ../mcpelauncher-server.git
+[submodule "arg-parser"]
+	path = arg-parser
+	url = ../arg-parser.git
+[submodule "mcpelauncher-linux-bin"]
+	path = mcpelauncher-linux-bin
+	url = ../mcpelauncher-linux-bin.git

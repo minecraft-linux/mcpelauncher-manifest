@@ -11,6 +11,11 @@ else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
 
+option(ENABLE_DEV_PATHS "Enables lookup in source directories for misc files required by the launcher. This should be disabled for package builds." ON)
+if (ENABLE_DEV_PATHS)
+    add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
+endif()
+
 
 include(ext/json.cmake)
 include(ext/glfw.cmake)
@@ -19,6 +24,7 @@ add_subdirectory(logger)
 add_subdirectory(base64)
 add_subdirectory(file-util)
 add_subdirectory(properties-parser)
+add_subdirectory(arg-parser)
 
 add_subdirectory(simple-ipc)
 add_subdirectory(daemon-utils/client)
@@ -39,3 +45,8 @@ add_subdirectory(mcpelauncher-core)
 add_subdirectory(mcpelauncher-client)
 add_subdirectory(mcpelauncher-server)
 
+
+option(MSA_DAEMON_PATH "Additional paths in which the MSA daemon should be looked in. Relative to the application directory." )
+if (MSA_DAEMON_PATH)
+    target_compile_definitions(mcpelauncher-client PRIVATE -DMSA_DAEMON_PATH="${MSA_DAEMON_PATH}")
+endif()
