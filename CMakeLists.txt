@@ -18,9 +18,10 @@ if (ENABLE_DEV_PATHS)
     add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
 endif()
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-include(ext/json.cmake)
-include(ext/glfw.cmake)
+include(cmake/json.cmake)
+include(cmake/glfw.cmake)
 
 if (APPLE)
     add_subdirectory(osx-elf-header)
