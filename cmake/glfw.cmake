@@ -24,6 +24,6 @@ set_property(TARGET glfw3 PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_BINARY_
 
 if(APPLE)
         set_property(TARGET glfw3 PROPERTY INTERFACE_LINK_LIBRARIES ${Cocoa_LIBRARIES} ${CoreVideo_LIBRARIES} ${IOKit_LIBRARIES} ${OPENGL_LIBRARIES})
-elseif()
+else()
         set_property(TARGET glfw3 PROPERTY INTERFACE_LINK_LIBRARIES ${X11_X11_LIB} ${X11_Xcursor_LIB} ${X11_Xrandr_LIB} ${X11_Xxf86vm_LIB} ${X11_Xinerama_LIB})
 endif()
