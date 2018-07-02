@@ -67,3 +67,6 @@
 [submodule "osx-elf-header"]
 	path = osx-elf-header
 	url = ../osx-elf-header.git
+[submodule "mcpelauncher-mac-bin"]
+	path = mcpelauncher-mac-bin
+	url = ../mcpelauncher-mac-bin.git

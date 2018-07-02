@@ -15,7 +15,11 @@ option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
 
 option(ENABLE_DEV_PATHS "Enables lookup in source directories for misc files required by the launcher. This should be disabled for package builds." ON)
 if (ENABLE_DEV_PATHS)
-    add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
+    if (APPLE)
+        add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-mac-bin")
+    else()
+        add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
+    endif()
 endif()
 
 
