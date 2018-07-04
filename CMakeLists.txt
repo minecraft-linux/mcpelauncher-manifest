@@ -26,7 +26,6 @@ endif()
 
 
 include(ext/json.cmake)
-include(ext/glfw.cmake)
 
 if (APPLE)
     add_subdirectory(osx-elf-header)
@@ -49,6 +48,8 @@ add_subdirectory(game-window)
 if (GAMEWINDOW_SYSTEM STREQUAL "EGLUT")
     add_subdirectory(eglut)
     add_subdirectory(linux-gamepad)
+elseif (GAMEWINDOW_SYSTEM STREQUAL "GLFW")
+    include(ext/glfw.cmake)
 endif()
 
 add_subdirectory(cll-telemetry)
