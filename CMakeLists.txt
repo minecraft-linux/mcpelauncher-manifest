@@ -13,13 +13,15 @@ endif(APPLE)
 
 option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
 
+if (APPLE)
+    set(NATIVES_PATH_DIR "${CMAKE_SOURCE_DIR}/mcpelauncher-mac-bin")
+else()
+    set(NATIVES_PATH_DIR "${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
+endif()
+
 option(ENABLE_DEV_PATHS "Enables lookup in source directories for misc files required by the launcher. This should be disabled for package builds." ON)
 if (ENABLE_DEV_PATHS)
-    if (APPLE)
-        add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-mac-bin")
-    else()
-        add_definitions(-DDEV_EXTRA_PATHS="${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
-    endif()
+    add_definitions(-DDEV_EXTRA_PATHS="${NATIVES_PATH_DIR}")
 endif()
 
 
@@ -58,6 +60,8 @@ add_subdirectory(mcpelauncher-core)
 add_subdirectory(mcpelauncher-client)
 add_subdirectory(mcpelauncher-server)
 
+install(DIRECTORY ${NATIVES_PATH_DIR}/libs DESTINATION share/mcpelauncher PATTERN "*"
+        PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
 
 option(MSA_DAEMON_PATH "Additional paths in which the MSA daemon should be looked in. Relative to the application directory." )
 if (MSA_DAEMON_PATH)
