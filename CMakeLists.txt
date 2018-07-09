@@ -11,6 +11,8 @@ else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
 
+option(BUILD_CLIENT "Enables building of the client launcher." ON)
+option(BUILD_SERVER "Enables building of the server launcher." ON)
 option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
 
 if (APPLE)
@@ -27,12 +29,14 @@ endif()
 
 include(ext/json.cmake)
 
-include(game-window/BuildSettings.cmake)
-if (GAMEWINDOW_SYSTEM STREQUAL "EGLUT")
-    add_subdirectory(eglut)
-    add_subdirectory(linux-gamepad)
-elseif (GAMEWINDOW_SYSTEM STREQUAL "GLFW")
-    include(ext/glfw.cmake)
+if (BUILD_CLIENT)
+    include(game-window/BuildSettings.cmake)
+    if (GAMEWINDOW_SYSTEM STREQUAL "EGLUT")
+        add_subdirectory(eglut)
+        add_subdirectory(linux-gamepad)
+    elseif (GAMEWINDOW_SYSTEM STREQUAL "GLFW")
+        include(ext/glfw.cmake)
+    endif()
 endif()
 
 if (APPLE)
@@ -46,22 +50,31 @@ add_subdirectory(file-util)
 add_subdirectory(properties-parser)
 add_subdirectory(arg-parser)
 
-add_subdirectory(simple-ipc)
-add_subdirectory(daemon-utils/client)
-add_subdirectory(msa-daemon-client)
-
 add_subdirectory(libhybris)
-add_subdirectory(file-picker)
-add_subdirectory(game-window)
 
-add_subdirectory(cll-telemetry)
+if (BUILD_CLIENT)
+    # MSA is only required with the client
+    add_subdirectory(simple-ipc)
+    add_subdirectory(daemon-utils/client)
+    add_subdirectory(msa-daemon-client)
+
+    add_subdirectory(file-picker)
+    add_subdirectory(game-window)
+
+    add_subdirectory(cll-telemetry)
+endif()
 
 add_subdirectory(minecraft-symbols)
 add_subdirectory(minecraft-imported-symbols)
 add_subdirectory(mcpelauncher-common)
 add_subdirectory(mcpelauncher-core)
-add_subdirectory(mcpelauncher-client)
-add_subdirectory(mcpelauncher-server)
+
+if (BUILD_CLIENT)
+    add_subdirectory(mcpelauncher-client)
+endif()
+if (BUILD_SERVER)
+    add_subdirectory(mcpelauncher-server)
+endif()
 
 install(DIRECTORY ${NATIVES_PATH_DIR}/libs COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
         PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
