@@ -74,6 +74,7 @@ if (BUILD_CLIENT)
 endif()
 if (BUILD_SERVER)
     add_subdirectory(mcpelauncher-server)
+    add_subdirectory(mcpelauncher-just)
 endif()
 
 install(DIRECTORY ${NATIVES_PATH_DIR}/libs COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
