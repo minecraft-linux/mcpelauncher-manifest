@@ -26,6 +26,10 @@ if (ENABLE_DEV_PATHS)
     add_definitions(-DDEV_EXTRA_PATHS="${NATIVES_PATH_DIR}")
 endif()
 
+option(USE_OWN_CURL "Builds CURL as an ExternalProject dependency" OFF)
+if (USE_OWN_CURL)
+    include(ext/curl.cmake)
+endif()
 
 include(ext/json.cmake)
 
