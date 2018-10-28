@@ -11,6 +11,23 @@ else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
 
+find_program(GIT_EXEC git)
+mark_as_advanced(GIT_EXEC ADVANCED)
+function(git_commit_hash DIR OUT_VAL)
+    if (GIT_EXEC)
+        execute_process(
+                COMMAND ${GIT_EXEC} log -1 --format=%h
+                WORKING_DIRECTORY ${DIR}
+                OUTPUT_VARIABLE OUTPUT
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        set(${OUT_VAL} ${OUTPUT} PARENT_SCOPE)
+    else()
+        set(${OUT_VAL} "" PARENT_SCOPE)
+    endif()
+endfunction()
+git_commit_hash(${CMAKE_SOURCE_DIR} MANIFEST_GIT_COMMIT_HASH)
+
 option(BUILD_CLIENT "Enables building of the client launcher." ON)
 option(BUILD_SERVER "Enables building of the server launcher." ON)
 option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
