@@ -5,6 +5,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
+string(TIMESTAMP BUILD_TIMESTAMP "%Y%m%d-%H%M%S" UTC)
+
 if(APPLE)
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-apple-darwin")
 else()
