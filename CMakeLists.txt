@@ -13,6 +13,9 @@ else()
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif(APPLE)
 
+option(DEB_XENIAL_DEPENDENCIES "Use Ubuntu 16.04 dependency list" OFF)
+mark_as_advanced(DEB_XENIAL_DEPENDENCIES)
+
 find_program(GIT_EXEC git)
 mark_as_advanced(GIT_EXEC ADVANCED)
 function(git_commit_hash DIR OUT_VAL)
