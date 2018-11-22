@@ -42,7 +42,7 @@ endif()
 
 option(ENABLE_DEV_PATHS "Enables lookup in source directories for misc files required by the launcher. This should be disabled for package builds." ON)
 if (ENABLE_DEV_PATHS)
-    add_definitions(-DDEV_EXTRA_PATHS="${NATIVES_PATH_DIR}")
+    add_definitions(-DDEV_EXTRA_PATHS="${NATIVES_PATH_DIR}:${CMAKE_BINARY_DIR}/gamecontrollerdb")
 endif()
 
 option(USE_OWN_CURL "Builds CURL as an ExternalProject dependency" OFF)
@@ -51,6 +51,11 @@ if (USE_OWN_CURL)
 endif()
 
 include(ext/json.cmake)
+
+option(USE_GAMECONTROLLERDB "Downloads gamecontrollerdb.txt from gabomdq/SDL_GameControllerDB" ON)
+if (USE_GAMECONTROLLERDB)
+    include(ext/gamepad_mappings.cmake)
+endif()
 
 if (BUILD_CLIENT)
     include(game-window/BuildSettings.cmake)
