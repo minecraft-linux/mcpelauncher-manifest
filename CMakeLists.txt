@@ -1,17 +1,26 @@
 cmake_minimum_required(VERSION 3.0)
 
-set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m32")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
+if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m32")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
+endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 string(TIMESTAMP BUILD_TIMESTAMP "%Y%m%d-%H%M%S" UTC)
 
+set(IS_ARM_BUILD FALSE)
+set(IS_ARMHF_BUILD FALSE)
+if(${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "aarch64")
+    set(IS_ARM_BUILD TRUE)
+    set(IS_ARMHF_BUILD TRUE)
+endif()
+
 if(APPLE)
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-apple-darwin")
-else()
+elseif(NOT IS_ARM_BUILD)
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
-endif(APPLE)
+endif()
 
 option(DEB_XENIAL_DEPENDENCIES "Use Ubuntu 16.04 dependency list" OFF)
 mark_as_advanced(DEB_XENIAL_DEPENDENCIES)
