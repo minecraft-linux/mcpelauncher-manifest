@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
+enable_language(C CXX ASM)
+
 if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m32")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
