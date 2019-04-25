@@ -24,7 +24,7 @@ elseif(NOT IS_ARM_BUILD)
     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
 endif()
 
-option(DEB_XENIAL_DEPENDENCIES "Use Ubuntu 16.04 dependency list" OFF)
+set(DEB_OS_NAME "none" CACHE STRING "Specifies the target OS for building the debs (ubuntu-xenial, ubuntu-bionic, ubuntu-disco)")
 mark_as_advanced(DEB_XENIAL_DEPENDENCIES)
 
 find_program(GIT_EXEC git)
