@@ -25,7 +25,7 @@ elseif(NOT IS_ARM_BUILD)
 endif()
 
 set(DEB_OS_NAME "none" CACHE STRING "Specifies the target OS for building the debs (ubuntu-xenial, ubuntu-bionic, ubuntu-disco)")
-mark_as_advanced(DEB_XENIAL_DEPENDENCIES)
+mark_as_advanced(DEB_OS_NAME)
 
 find_program(GIT_EXEC git)
 mark_as_advanced(GIT_EXEC ADVANCED)
