@@ -7,7 +7,6 @@ if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
 endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 string(TIMESTAMP BUILD_TIMESTAMP "%Y%m%d-%H%M%S" UTC)
 
@@ -64,7 +63,12 @@ if (USE_OWN_CURL)
     include(ext/curl.cmake)
 endif()
 
-include(ext/json.cmake)
+option(USE_OWN_JSON "Downloads nlohmann_json as an ExternalProject dependency" ON)
+if (USE_OWN_JSON)
+    include(ext/json.cmake)
+else()
+    find_package(nlohmann_json REQUIRED)
+endif()
 
 option(USE_GAMECONTROLLERDB "Downloads gamecontrollerdb.txt from gabomdq/SDL_GameControllerDB" ON)
 if (USE_GAMECONTROLLERDB)
