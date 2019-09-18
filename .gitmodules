@@ -1,54 +1,54 @@
 [submodule "logger"]
 	path = logger
-	url = ../logger.git
+	url = ../../minecraft-linux/logger.git
 [submodule "base64"]
 	path = base64
-	url = ../base64.git
+	url = ../../minecraft-linux/base64.git
 [submodule "file-util"]
 	path = file-util
-	url = ../file-util.git
+	url = ../../minecraft-linux/file-util.git
 [submodule "properties-parser"]
 	path = properties-parser
-	url = ../properties-parser.git
+	url = ../../minecraft-linux/properties-parser.git
 [submodule "simple-ipc"]
 	path = simple-ipc
 	url = ../../MCMrARM/simple-ipc.git
 [submodule "daemon-utils"]
 	path = daemon-utils
-	url = ../daemon-utils.git
+	url = ../../minecraft-linux/daemon-utils.git
 [submodule "msa-daemon-client"]
 	path = msa-daemon-client
-	url = ../msa-daemon-client.git
+	url = ../../minecraft-linux/msa-daemon-client.git
 [submodule "libhybris"]
 	path = libhybris
-	url = ../libhybris.git
+	url = ../../minecraft-linux/libhybris.git
 [submodule "eglut"]
 	path = eglut
-	url = ../eglut.git
+	url = ../../minecraft-linux/eglut.git
 [submodule "linux-gamepad"]
 	path = linux-gamepad
 	url = ../../MCMrARM/linux-gamepad.git
 [submodule "game-window"]
 	path = game-window
-	url = ../game-window.git
+	url = ../../minecraft-linux/game-window.git
 [submodule "file-picker"]
 	path = file-picker
-	url = ../file-picker.git
+	url = ../../minecraft-linux/file-picker.git
 [submodule "cll-telemetry"]
 	path = cll-telemetry
-	url = ../cll-telemetry.git
+	url = ../../minecraft-linux/cll-telemetry.git
 [submodule "minecraft-symbols"]
 	path = minecraft-symbols
 	url = ../minecraft-symbols.git
 [submodule "minecraft-imported-symbols"]
 	path = minecraft-imported-symbols
-	url = ../minecraft-imported-symbols.git
+	url = ../../minecraft-linux/minecraft-imported-symbols.git
 [submodule "mcpelauncher-common"]
 	path = mcpelauncher-common
-	url = ../mcpelauncher-common.git
+	url = ../../minecraft-linux/mcpelauncher-common.git
 [submodule "mcpelauncher-core"]
 	path = mcpelauncher-core
-	url = ../mcpelauncher-core.git
+	url = ../../minecraft-linux/mcpelauncher-core.git
 [submodule "mcpelauncher-client"]
 	path = mcpelauncher-client
 	url = ../mcpelauncher-client.git
@@ -57,19 +57,19 @@
 	url = ../mcpelauncher-server.git
 [submodule "arg-parser"]
 	path = arg-parser
-	url = ../arg-parser.git
+	url = ../../minecraft-linux/arg-parser.git
 [submodule "mcpelauncher-linux-bin"]
 	path = mcpelauncher-linux-bin
-	url = ../mcpelauncher-linux-bin.git
+	url = ../../minecraft-linux/mcpelauncher-linux-bin.git
 [submodule "epoll-shim"]
 	path = epoll-shim
-	url = ../epoll-shim.git
+	url = ../../minecraft-linux/epoll-shim.git
 [submodule "osx-elf-header"]
 	path = osx-elf-header
-	url = ../osx-elf-header.git
+	url = ../../minecraft-linux/osx-elf-header.git
 [submodule "mcpelauncher-mac-bin"]
 	path = mcpelauncher-mac-bin
-	url = ../mcpelauncher-mac-bin.git
+	url = ../../minecraft-linux/mcpelauncher-mac-bin.git
 [submodule "mcpelauncher-just"]
 	path = mcpelauncher-just
-	url = ../mcpelauncher-just.git
+	url = ../../minecraft-linux/mcpelauncher-just.git
