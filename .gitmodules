@@ -48,7 +48,7 @@
 	url = ../../minecraft-linux/mcpelauncher-common.git
 [submodule "mcpelauncher-core"]
 	path = mcpelauncher-core
-	url = ../../minecraft-linux/mcpelauncher-core.git
+	url = ../mcpelauncher-core.git
 [submodule "mcpelauncher-client"]
 	path = mcpelauncher-client
 	url = ../mcpelauncher-client.git
