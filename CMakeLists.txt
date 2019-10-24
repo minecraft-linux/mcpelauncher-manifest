@@ -93,6 +93,7 @@ add_subdirectory(properties-parser)
 add_subdirectory(arg-parser)
 
 add_subdirectory(libhybris)
+add_subdirectory(libjnivm)
 
 if (BUILD_CLIENT)
     # MSA is only required with the client

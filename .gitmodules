@@ -22,6 +22,9 @@
 [submodule "libhybris"]
 	path = libhybris
 	url = ../../minecraft-linux/libhybris.git
+[submodule "libjnivm"]
+        path = libjnivm
+        url = ../libjnivm.git
 [submodule "eglut"]
 	path = eglut
 	url = ../../minecraft-linux/eglut.git
