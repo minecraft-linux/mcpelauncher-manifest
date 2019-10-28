@@ -33,7 +33,7 @@
 	url = ../../MCMrARM/linux-gamepad.git
 [submodule "game-window"]
 	path = game-window
-	url = ../../minecraft-linux/game-window.git
+	url = ../game-window.git
 [submodule "file-picker"]
 	path = file-picker
 	url = ../../minecraft-linux/file-picker.git

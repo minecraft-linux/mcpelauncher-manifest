@@ -1,0 +1,14 @@
+_ZN19AppPlatform_android10initConstsEP9MC_ENGINE.asm
+_Z12cpprest_initP7_JavaVM.asm
+_ZN3App4initER10AppContext.asm
+_ZN3App16setRenderingSizeEii.asm
+_ZN3App17setUISizeAndScaleEiif.asm
+_ZN13MinecraftGame16setRenderingSizeEii.asm
+_ZN13MinecraftGame17setUISizeAndScaleEiif.asm
+_ZN19AppPlatformListener12initListenerEf.asm
+_ZNK19AppLifecycleContext9canRenderEv.asm
+android_main.asm
+.vscode/
+build/
+server/
+worlds/
