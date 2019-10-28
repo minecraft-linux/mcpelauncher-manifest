@@ -6,3 +6,5 @@ The main repository for the Linux and Mac OS Bedrock edition Minecraft launcher.
 - Mouse work now partially
 
 - Work in Progress
+
+**Your current working directory must be the asset folder of 1.14.x**
