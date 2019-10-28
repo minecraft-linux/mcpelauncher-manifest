@@ -27,7 +27,7 @@
         url = ../libjnivm.git
 [submodule "eglut"]
 	path = eglut
-	url = ../../minecraft-linux/eglut.git
+	url = ../eglut.git
 [submodule "linux-gamepad"]
 	path = linux-gamepad
 	url = ../../MCMrARM/linux-gamepad.git
