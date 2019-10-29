@@ -10,4 +10,6 @@ The main repository for the Linux and Mac OS Bedrock edition Minecraft launcher.
 
 
 # Before starting the new launcher
+**Download the game with the original bedrock launcher qt gui**
+
 **Your current working directory must be the assets folder of 1.13.x or 1.14.x like `~/.local/share/mcpelauncher/versions/1.14.0.3/assets` for 1.14.0.3**
