@@ -1,5 +1,5 @@
 # mcpelauncher-manifest
-A fork of MCPE Launcher creared by ChristopherHX for the Linux and Mac OS Bedrock Edition Minecraft launcher that supports 1.13.x and 1.14.x.
+A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedrock Edition Minecraft launcher that supports 1.13.x and 1.14.x.
 
 # Features
 - Character Creator [X]
