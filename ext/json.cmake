@@ -2,7 +2,7 @@ include(ExternalProject)
 
 ExternalProject_Add(
         nlohmann_json_ext
-        URL "https://github.com/nlohmann/json/releases/download/v3.1.2/include.zip"
+        URL "https://github.com/nlohmann/json/releases/download/v3.7.0/include.zip"
         CONFIGURE_COMMAND "" BUILD_COMMAND "" INSTALL_DIR "" INSTALL_COMMAND ""
 )
 ExternalProject_Get_Property(nlohmann_json_ext SOURCE_DIR)
