@@ -2,7 +2,7 @@ include(ExternalProject)
 
 ExternalProject_Add(
         glfw3_ext
-        URL "https://github.com/glfw/glfw/archive/master.zip"
+        URL "https://github.com/ChristopherHX/glfw/archive/master.zip"
         INSTALL_DIR ${CMAKE_BINARY_DIR}/ext/glfw
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/ext/glfw" "-DBUILD_SHARED_LIBS=OFF" "-DCMAKE_C_FLAGS=-m32" "-DCMAKE_LINK_FLAGS=-m32" "-DCMAKE_LIBRARY_ARCHITECTURE=${CMAKE_LIBRARY_ARCHITECTURE}"
 )
