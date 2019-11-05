@@ -17,7 +17,7 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 - `make -j12`
 
 - Finally
-  - `cd ~/.local/share/mcpelauncher/versions/1.13.X/assets`
+  - ~~`cd ~/.local/share/mcpelauncher/versions/1.13.X/assets`~~ No longer needed
   - `~/mcpelauncher/build/mcpelauncher-client/mcpelauncher-client -dg ~/.local/share/mcpelauncher/versions/1.13.X`
   - Then Minecraft Bedrock 1.13.x will begin to start up. Make sure you replace `1.13.X` with your 1.13.X or 1.14.X installation, otherwise this setup will not work for you
 
