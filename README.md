@@ -8,6 +8,9 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 - Xbox Authentication [ ]
 
 # Installation Guide
+## Install Prebuilds for Ubuntu
+https://github.com/ChristopherHX/linux-packaging-scripts/releases
+## Build from Source
 - First, make sure you have all needed drivers installed:
 `sudo apt-get install g++-multilib libpng-dev:i386 libx11-dev:i386 libxi-dev:i386 libcurl4-openssl-dev:i386 libudev-dev:i386 libevdev-dev:i386 libegl1-mesa-dev:i386 libasound2:i386`
 - Next, in the same window, run `git clone --recursive https://github.com/ChristopherHX/mcpelauncher-manifest.git mcpelauncher && cd mcpelauncher`in the home directory.
