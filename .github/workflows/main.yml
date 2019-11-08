@@ -13,7 +13,7 @@ jobs:
         repository: ChristopherHX/osx-packaging-scripts
         ref: buildfork
     - name: Update brew
-      run: brew update && brew upgrade python
+      run: brew update
     - name: Install brew dependencies
       run: brew install cmake p7zip libzip libuv protobuf
     - name: Install python dependencies
