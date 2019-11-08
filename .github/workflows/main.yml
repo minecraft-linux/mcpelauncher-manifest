@@ -15,7 +15,7 @@ jobs:
     - name: List files
       working-directory: ${{ github.workspace }}
       run: |
-        ls -R ${{ github.workspace }}/../.. | awk '
+        ls -R /Library/Developer/ | awk '
         /:$/&&f{s=$0;f=0}
         /:$/&&!f{sub(/:$/,"");s=$0;f=1;next}
         NF&&f{ print s"/"$0 }'
@@ -32,8 +32,7 @@ jobs:
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: |
         export MACOSX_DEPLOYMENT_TARGET=10.10
-        export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13
-        echo SDKROOT = $SDKROOT
+        export SDKROOT=macosx10.13
         python3 __main__.py --qt-path qt/*/*/
         
     - name: Build .dmg
