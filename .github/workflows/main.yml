@@ -26,15 +26,15 @@ jobs:
     - name: Install python dependencies
       run: pip3 install jinja2 ds_store
     - name: Download Qt
-      working-directory: ${{ github.workspace }}
-      run: ${{ github.workspace }}/download_qt.sh
+      working-directory: ${{ github.workspace }}/../osx-packaging-scripts
+      run: ./download_qt.sh
     - name: Build
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 __main__.py --qt-path qt/*/*/
     - name: Build .dmg
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 build_dmg.py
     - uses: actions/upload-artifact@master
       with:
         name: DMG Image
-        path: ${{ github.workspace }}/output/Minecraft Bedrock Launcher.dmg
+        path: ${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg
