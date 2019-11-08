@@ -20,7 +20,7 @@ jobs:
       run: pip3 install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}
-      run: ./download_qt.sh
+      run: ${{ github.workspace }}/download_qt.sh
     - name: Build
       working-directory: ${{ github.workspace }}
       run: python3 __main__.py --qt-path qt/*/*/
