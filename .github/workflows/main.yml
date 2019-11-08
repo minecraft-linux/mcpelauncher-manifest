@@ -30,7 +30,12 @@ jobs:
       run: ./download_qt.sh
     - name: Build
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
-      run: python3 __main__.py --qt-path qt/*/*/
+      run: |
+        export MACOSX_DEPLOYMENT_TARGET=10.10
+        export SDKROOT=$(xcrun --sdk macosx10.13 --show-sdk-path)
+        echo SDKROOT = $SDKROOT
+        python3 __main__.py --qt-path qt/*/*/
+        
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 build_dmg.py
