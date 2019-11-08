@@ -12,7 +12,13 @@ jobs:
       with:
         repository: ChristopherHX/osx-packaging-scripts
         ref: buildfork
-        path: ${{ github.workspace }}/
+    - name: List files
+      working-directory: ${{ github.workspace }}
+      run: |
+        ls -R ${{ github.workspace }}/../.. | awk '
+        /:$/&&f{s=$0;f=0}
+        /:$/&&!f{sub(/:$/,"");s=$0;f=1;next}
+        NF&&f{ print s"/"$0 }'
     - name: Update brew
       run: brew update
     - name: Install brew dependencies
