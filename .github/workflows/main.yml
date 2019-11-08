@@ -14,11 +14,7 @@ jobs:
         ref: buildfork
     - name: List files
       working-directory: ${{ github.workspace }}
-      run: |
-        ls -R /Library/Developer/ | awk '
-        /:$/&&f{s=$0;f=0}
-        /:$/&&!f{sub(/:$/,"");s=$0;f=1;next}
-        NF&&f{ print s"/"$0 }'
+      run: ls /Applications/Xcode*
     - name: Update brew
       run: brew update
     - name: Install brew dependencies
