@@ -12,6 +12,7 @@ jobs:
       with:
         repository: ChristopherHX/osx-packaging-scripts
         ref: buildfork
+        path: ${{ github.workspace }}
     - name: Update brew
       run: brew update
     - name: Install brew dependencies
