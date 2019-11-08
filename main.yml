@@ -1,0 +1,30 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        repository: ChristopherHX/osx-packaging-scripts
+        ref: buildfork
+    - name: Update brew
+      run: brew update && brew upgrade python
+    - name: Install brew dependencies
+      run: brew install cmake p7zip libzip libuv protobuf
+    - name: Install python dependencies
+      run: pip3 install jinja2 ds_store
+    - name: Download Qt
+      run: ./download_qt.sh
+    - name: Build
+      run: python3 __main__.py --qt-path qt/*/*/
+    - name: Build .dmg
+      run: python3 build_dmg.py
+    - uses: actions/upload-artifact@master
+      with:
+        name: DMG Image
+        path: output/Minecraft Bedrock Launcher.dmg
