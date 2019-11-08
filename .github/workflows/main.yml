@@ -32,7 +32,7 @@ jobs:
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: |
         export MACOSX_DEPLOYMENT_TARGET=10.10
-        export SDKROOT=$(xcrun --sdk macosx10.13 --show-sdk-path)
+        export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13
         echo SDKROOT = $SDKROOT
         python3 __main__.py --qt-path qt/*/*/
         
