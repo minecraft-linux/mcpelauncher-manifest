@@ -12,6 +12,10 @@ jobs:
       with:
         repository: ChristopherHX/osx-packaging-scripts
         ref: buildfork
+    - uses: actions/checkout@master
+      with:
+        repository: ChristopherHX/MacOSX10.13.sdk
+        token: ${{ secrets.MacOSX1013sdk }}
     - name: List files
       working-directory: ${{ github.workspace }}
       run: ls /Applications/Xcode*
@@ -27,10 +31,8 @@ jobs:
     - name: Build
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: |
-        curl -L https://github.com/phracker/MacOSX-SDKs/releases/download/10.13/MacOSX10.13.sdk.tar.xz --output MacOSX10.13.sdk.tar.xz
-        tar -xf MacOSX10.13.sdk.tar.xz
         export MACOSX_DEPLOYMENT_TARGET=10.10
-        export SDKROOT=${{ github.workspace }}/../osx-packaging-scripts/MacOSX10.13.sdk
+        export SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         python3 __main__.py --qt-path qt/*/*/
         
     - name: Build .dmg
