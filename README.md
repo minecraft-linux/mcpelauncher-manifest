@@ -10,6 +10,10 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 # Installation Guide
 ## Install Prebuilds for Ubuntu
 https://github.com/ChristopherHX/linux-packaging-scripts/releases
+## Install MacOs
+- Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/master
+- Then click the green checkmark of the latest commit, click Details (popup)
+- Upper right under Artifacts is the download DMG in a .zip
 ## Build from Source
 - First, make sure you have all needed drivers installed:
 `sudo apt-get install g++-multilib libpng-dev:i386 libx11-dev:i386 libxi-dev:i386 libcurl4-openssl-dev:i386 libudev-dev:i386 libevdev-dev:i386 libegl1-mesa-dev:i386 libasound2:i386`
