@@ -5,7 +5,7 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 - Character Creator [X]
 - Fox [X]
 - All MC 1.13 features without crashes [X]
-- Xbox Authentication [ ]
+- Xbox Authentication [X], **Currently no Autologin (login each time starting the game!)**
 
 # Installation Guide
 ## Install Prebuilds for Ubuntu
