@@ -23,10 +23,7 @@ jobs:
     - name: Update brew
       run: brew update
     - name: Install brew dependencies
-      run: |
-        export MACOSX_DEPLOYMENT_TARGET=10.10
-        export SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
-        brew install -s p7zip libzip libuv protobuf
+      run: brew install p7zip libzip libuv protobuf
     - name: Install python dependencies
       run: pip3 install jinja2 ds_store
     - name: Download Qt
