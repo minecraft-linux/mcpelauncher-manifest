@@ -11,6 +11,7 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 ## Install Prebuilds for Ubuntu
 https://github.com/ChristopherHX/linux-packaging-scripts/releases
 ## Install MacOs 10.12 - 10.14
+**Adding libpng x86 to MacOs isn't easy**
 - Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/master
 - Then click the green checkmark of the latest commit, click Details (popup)
 - Upper right under Artifacts is the download DMG in a .zip
