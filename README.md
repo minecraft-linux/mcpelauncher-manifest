@@ -14,6 +14,11 @@ https://github.com/ChristopherHX/linux-packaging-scripts/releases
 - Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/master
 - Then click the green checkmark of the latest commit, click Details (popup)
 - Upper right under Artifacts is the download DMG in a .zip
+### If the Minecraft game not fit into the Window
+**Maybe you see only the lower left quater of the Game then try this**
+- Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/sizebug
+- Then click the green checkmark of the latest commit, click Details (popup)
+- Upper right under Artifacts is the download DMG in a .zip
 ## Build from Source
 - First, make sure you have all needed drivers installed:
 `sudo apt-get install g++-multilib libpng-dev:i386 libx11-dev:i386 libxi-dev:i386 libcurl4-openssl-dev:i386 libudev-dev:i386 libevdev-dev:i386 libegl1-mesa-dev:i386 libasound2:i386`
