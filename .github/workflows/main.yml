@@ -23,7 +23,7 @@ jobs:
     - name: Update brew
       run: brew update
     - name: Install brew dependencies
-      run: brew install p7zip libzip libuv protobuf
+      run: brew install p7zip libpng libzip libuv protobuf
     - name: Install python dependencies
       run: pip3 install jinja2 ds_store
     - name: Download Qt
