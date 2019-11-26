@@ -2,15 +2,15 @@
 A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedrock Edition Minecraft launcher that supports 1.13.x and 1.14.x.
 
 # Features
-- Character Creator [X]
-- Fox [X]
-- All MC 1.13 features without crashes [X]
 - Xbox Authentication [*], **WORKS ONLY ON x86, x86_64, AMD64, x64, Currently no Autologin (login each time starting the game!)**
+- **ARM currently no Mouse capture support**
 
 # Installation Guide
-## Install Prebuilds for Ubuntu
+## Install Prebuilds for Debian / Ubuntu / archlinux / manjarolinux
 https://github.com/ChristopherHX/linux-packaging-scripts/releases
-## Install MacOs 10.12 - 10.14
+### Appimage minimal dependences - Gamelauncher not found (Debian (ChromeOS Linux) / Ubuntu / AMD64)
+- `sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt install libc6-i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386`
+## Install Prebuilds for MacOs 10.12 - 10.14
 **Adding libpng x86 to MacOs isn't easy**
 - Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/master
 - Then click the green checkmark of the latest commit, click Details (popup)
