@@ -8,15 +8,26 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 # Installation Guide
 ## Install Prebuilds for Debian / Ubuntu / archlinux / manjarolinux
 https://github.com/ChristopherHX/linux-packaging-scripts/releases
+
+If you have the minecraft-linux launcher already installed then you need only to install the mcpelauncher-&ast;-client.deb (Debian / Ubuntu) or mcpelauncher-linux-git-&ast;.pkg.tar.xz (archlinux / manjarolinux) (No need to uninstall anything)
+
+### Debian / Ubuntu
+Install it via `sudo dpkg -i *.deb && sudo apt-get install -f` or using the Userinterface
+
+### archlinux / manjarolinux
+Install it via `sudo pacman -U *.pkg.tar.xz` or use the custom AUR packages (Sourcebuild)
+
 ### Appimage minimal dependencies - Gamelauncher not found (Debian (ChromeOS Linux) / Ubuntu / AMD64)
 - `sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt install libc6-i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386`
 ## Install Prebuilds for MacOs 10.12 - 10.14
-**Adding libpng x86 to MacOs isn't easy**
+https://github.com/ChristopherHX/mcpelauncher-manifest/releases
+
+### Experimental Builds (Release Page maybe outdated)
 - Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/master
 - Then click the green checkmark of the latest commit, click Details (popup)
 - Upper right under Artifacts is the download DMG in a .zip
 
-### If the Minecraft game not fit into the Window
+#### If the Minecraft game not fit into the Window
 **Maybe you see only the lower left quater of the Game then try this**
 - Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/sizebug
 - Then click the green checkmark of the latest commit, click Details (popup)
