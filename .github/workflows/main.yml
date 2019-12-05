@@ -8,11 +8,11 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
       with:
         repository: ChristopherHX/osx-packaging-scripts
         ref: buildfork
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
       with:
         repository: ChristopherHX/MacOSX10.13.sdk
         ref: d4e62526638c82e8e62fef0de0ad767a1f798671
