@@ -3,7 +3,6 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 
 # Features
 - Xbox Authentication [*], **WORKS ONLY ON x86, x86_64, AMD64, x64, Currently no Autologin (login each time starting the game!)**
-- **ARM currently no Mouse capture support**
 
 # Installation Guide
 ## Install Prebuilds for Debian / Ubuntu / archlinux / manjarolinux
