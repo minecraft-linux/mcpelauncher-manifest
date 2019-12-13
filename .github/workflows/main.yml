@@ -32,7 +32,7 @@ jobs:
     - name: Build
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: |
-        export MACOSX_DEPLOYMENT_TARGET=10.10
+        export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         python3 __main__.py --qt-path qt/*/*/
         
