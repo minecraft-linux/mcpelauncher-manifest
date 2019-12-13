@@ -2,7 +2,20 @@
 A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedrock Edition Minecraft launcher that supports 1.13.x and 1.14.x.
 
 # Features
-- Xbox Authentication [*], **WORKS ONLY ON x86, x86_64, AMD64, x64, Currently no Autologin (login each time starting the game!)**
+- Linux x86, amd64 and ARM Support
+- Support for new Minecraft Releases (1.13+) out of Box
+  - Maybe breaks sometime in the future
+- Xbox live login
+- less game patches as the origin
+- Pure Linux x86 distro support on old PCs (SSE2 needed)
+- More prebuild Linux (disribution) packages as the origin
+
+# Not Implemented yet
+- Xbox live autologin
+- copy / paste handling
+- Autoupdate of the Launcher
+
+# [Issues / Bugs](https://github.com/ChristopherHX/mcpelauncher-manifest/issues)
 
 # Installation Guide
 ## Install Prebuilds for Debian / Ubuntu / archlinux / manjarolinux
