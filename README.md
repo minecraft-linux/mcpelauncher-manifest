@@ -11,11 +11,10 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
   - Might break sometime in the future
 - Xbox live login
 - less game patches needed than the original launcher
-- Pure Linux x86 distro support on old PCs (SSE2 CPU instruction set needed)
+- Pure Linux x86 distro support on old PCs (SSSE3 CPU instruction set needed)
 - More prebuild Linux (disribution) packages supported than the original launcher
 
 # Not Implemented yet
-- Xbox live autologin
 - copy / paste handling
 - Autoupdate of the Launcher
 
