@@ -1,14 +1,18 @@
 # mcpelauncher-manifest
 A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedrock Edition Minecraft launcher that supports 1.13.x and 1.14.x.
 
+ <p align="center">
+  <img src="https://user-images.githubusercontent.com/24195572/71060819-64f78c80-211b-11ea-8ea4-f1c2dabb9b54.png"/>
+</p>
+
 # Features
 - Linux x86, amd64 and ARM Support
 - Support for new Minecraft Releases (1.13+) out of Box
-  - Maybe breaks sometime in the future
+  - Might break sometime in the future
 - Xbox live login
-- less game patches as the origin
-- Pure Linux x86 distro support on old PCs (SSE2 needed)
-- More prebuild Linux (disribution) packages as the origin
+- less game patches needed than the original launcher
+- Pure Linux x86 distro support on old PCs (SSE2 CPU instruction set needed)
+- More prebuild Linux (disribution) packages supported than the original launcher
 
 # Not Implemented yet
 - Xbox live autologin
@@ -37,10 +41,10 @@ https://github.com/ChristopherHX/mcpelauncher-manifest/releases
 ### Experimental Builds (Release Page maybe outdated)
 - Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/master
 - Then click the green checkmark of the latest commit, click Details (popup)
-- Upper right under Artifacts is the download DMG in a .zip
+- Upper right under Artifacts is the downloadable DMG contained in a .zip
 
-#### If the Minecraft game not fit into the Window
-**Maybe you see only the lower left quater of the Game then try this**
+#### If the Minecraft game does not fit into the application Window
+**Maybe you see only the lower left quadrant of the Game then try this**
 - Goto https://github.com/ChristopherHX/mcpelauncher-manifest/commits/sizebug
 - Then click the green checkmark of the latest commit, click Details (popup)
 - Upper right under Artifacts is the download DMG in a .zip
