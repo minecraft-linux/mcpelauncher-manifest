@@ -15,7 +15,6 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 - More prebuild Linux (disribution) packages supported than the original launcher
 
 # Not Implemented yet
-- copy / paste handling
 - Autoupdate of the Launcher
 
 # [Issues / Bugs](https://github.com/ChristopherHX/mcpelauncher-manifest/issues)
