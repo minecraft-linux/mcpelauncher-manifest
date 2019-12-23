@@ -55,6 +55,7 @@ jobs:
     - uses: actions/checkout@v1
       with:
         repository: ChristopherHX/MacOSX10.14.sdk
+        ref: 5d1c9b28f01ef0b01225f92670ee587b430efa8e
         token: ${{ secrets.MacOSX1013sdk }}
     - name: List files
       working-directory: ${{ github.workspace }}
