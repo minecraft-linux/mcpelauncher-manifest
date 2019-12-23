@@ -43,7 +43,7 @@ jobs:
       with:
         name: DMG(sdk10.13)
         path: ${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg
-  buildSDK10.14:
+  buildSDK_10_14:
 
     runs-on: macos-latest
 
