@@ -41,5 +41,44 @@ jobs:
       run: python3 build_dmg.py
     - uses: actions/upload-artifact@master
       with:
-        name: DMG Image
+        name: DMG(sdk10.13)
+        path: ${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg
+  buildSDK10.14:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        repository: ChristopherHX/osx-packaging-scripts
+        ref: buildfork
+    - uses: actions/checkout@v1
+      with:
+        repository: ChristopherHX/MacOSX10.14.sdk
+        token: ${{ secrets.MacOSX1013sdk }}
+    - name: List files
+      working-directory: ${{ github.workspace }}
+      run: ls /Applications/Xcode*
+    - name: Update brew
+      run: brew update
+    - name: Install brew dependencies
+      run: brew install p7zip libpng libzip libuv protobuf
+    - name: Install python dependencies
+      run: pip3 install jinja2 ds_store
+    - name: Download Qt
+      working-directory: ${{ github.workspace }}/../osx-packaging-scripts
+      run: ./download_qt.sh
+    - name: Build
+      working-directory: ${{ github.workspace }}/../osx-packaging-scripts
+      run: |
+        export MACOSX_DEPLOYMENT_TARGET=10.12
+        export SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
+        python3 __main__.py --qt-path qt/*/*/
+        
+    - name: Build .dmg
+      working-directory: ${{ github.workspace }}/../osx-packaging-scripts
+      run: python3 build_dmg.py
+    - uses: actions/upload-artifact@master
+      with:
+        name: DMG(sdk10.14)
         path: ${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg
