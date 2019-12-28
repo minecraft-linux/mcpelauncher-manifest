@@ -83,3 +83,5 @@ jobs:
       with:
         name: DMG(sdk10.14)
         path: ${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg
+    - name: Upload Latest
+      run: curl -L https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_darwin_amd64.zip --output ghr.zip && unzip ghr.zip && ./ghr*/ghr -t ${{ secrets.MacOSX1013sdk }} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete MacOsLatest "${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg"
