@@ -4,16 +4,6 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-    - uses: actions/setup-python@v1
-      with:
-        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
-        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-    - uses: actions/setup-python@v1
-      with:
-        python-version: '2.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
-        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified  
-    - name: Show python versions
-      run: python --version && python2 --version && python3 --version
     - uses: actions/checkout@v1
       with:
         repository: ChristopherHX/osx-packaging-scripts
@@ -37,8 +27,18 @@ jobs:
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         brew install p7zip libzip libuv protobuf || :
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '2.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified  
+    - name: Show python versions
+      run: python --version && python2 --version && python3 --version
     - name: Install python dependencies
-      run: python3 -m pip install --user --upgrade pip && python3 -m pip install --user jinja2 ds_store
+      run: python3 -m pip install --upgrade pip && python3 -m pip3 install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: ./download_qt.sh
@@ -47,7 +47,7 @@ jobs:
       run: |
         export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
-        python __main__.py --qt-path qt/*/*/
+        python3 __main__.py --qt-path qt/*/*/
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 build_dmg.py
@@ -81,8 +81,18 @@ jobs:
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
         brew install p7zip libzip libuv protobuf || :
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '2.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified  
+    - name: Show python versions
+      run: python --version && python2 --version && python3 --version
     - name: Install python dependencies
-      run: python3 -m pip install --user --upgrade pip && python3 -m pip install --user jinja2 ds_store
+      run: python3 -m pip install --upgrade pip && pip3 install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: ./download_qt.sh
@@ -91,7 +101,7 @@ jobs:
       run: |
         export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
-        python __main__.py --qt-path qt/*/*/
+        python3 __main__.py --qt-path qt/*/*/
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 build_dmg.py
