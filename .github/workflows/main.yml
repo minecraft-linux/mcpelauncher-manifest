@@ -1,12 +1,8 @@
 name: CI
-
 on: [push]
-
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v1
       with:
@@ -31,14 +27,8 @@ jobs:
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         brew install p7zip libzip libuv protobuf || :
-    - uses: actions/setup-python@v1
-      with:
-        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
-        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-    - name: Find Python
-      run: 'python2 --version && ls -l /Users/runner/hostedtoolcache/Python/2.*/* || :'
     - name: Install python dependencies
-      run: pip install jinja2 ds_store
+      run: python3 -m pip install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: ./download_qt.sh
@@ -48,7 +38,6 @@ jobs:
         export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         python __main__.py --qt-path qt/*/*/
-        
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 build_dmg.py
@@ -57,9 +46,7 @@ jobs:
         name: DMG(sdk10.13)
         path: ${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg
   buildSDK_10_14:
-
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v1
       with:
@@ -84,12 +71,8 @@ jobs:
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
         brew install p7zip libzip libuv protobuf || :
-    - uses: actions/setup-python@v1
-      with:
-        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
-        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - name: Install python dependencies
-      run: pip install jinja2 ds_store
+      run: python3 -m pip install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: ./download_qt.sh
@@ -99,7 +82,6 @@ jobs:
         export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
         python __main__.py --qt-path qt/*/*/
-        
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 build_dmg.py
