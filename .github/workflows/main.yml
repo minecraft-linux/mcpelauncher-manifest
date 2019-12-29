@@ -31,8 +31,12 @@ jobs:
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         brew install p7zip libzip libuv protobuf || :
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - name: Install python dependencies
-      run: pip3 install jinja2 ds_store
+      run: pip install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: ./download_qt.sh
@@ -41,7 +45,7 @@ jobs:
       run: |
         export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
-        python3 __main__.py --qt-path qt/*/*/
+        python __main__.py --qt-path qt/*/*/
         
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
@@ -78,8 +82,12 @@ jobs:
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
         brew install p7zip libzip libuv protobuf || :
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - name: Install python dependencies
-      run: pip3 install jinja2 ds_store
+      run: pip install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: ./download_qt.sh
@@ -88,7 +96,7 @@ jobs:
       run: |
         export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
-        python3 __main__.py --qt-path qt/*/*/
+        python __main__.py --qt-path qt/*/*/
         
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
