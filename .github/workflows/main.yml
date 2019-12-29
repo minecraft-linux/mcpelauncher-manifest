@@ -17,13 +17,20 @@ jobs:
         repository: ChristopherHX/MacOSX10.13.sdk
         ref: d4e62526638c82e8e62fef0de0ad767a1f798671
         token: ${{ secrets.MacOSX1013sdk }}
-    - name: List files
-      working-directory: ${{ github.workspace }}
-      run: ls /Applications/Xcode*
-    - name: Update brew
-      run: brew update
+    - name: Apply custom patch and Update brew
+      working-directory: "/usr/local/Homebrew"
+      run: |
+        git remote add fork https://github.com/ChristopherHX/brew.git
+        git fetch fork
+        git config --global user.email "CI@local"
+        git config --global user.name "CI Bot"
+        git merge fork/master
+        brew update
     - name: Install brew dependencies
-      run: brew install p7zip libpng libzip libuv protobuf
+      run: |
+        export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12
+        export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
+        brew install p7zip libzip libuv protobuf
     - name: Install python dependencies
       run: pip3 install jinja2 ds_store
     - name: Download Qt
@@ -57,13 +64,20 @@ jobs:
         repository: ChristopherHX/MacOSX10.14.sdk
         ref: 5d1c9b28f01ef0b01225f92670ee587b430efa8e
         token: ${{ secrets.MacOSX1013sdk }}
-    - name: List files
-      working-directory: ${{ github.workspace }}
-      run: ls /Applications/Xcode*
-    - name: Update brew
-      run: brew update
+    - name: Apply custom patch and Update brew
+      working-directory: "/usr/local/Homebrew"
+      run: |
+        git remote add fork https://github.com/ChristopherHX/brew.git
+        git fetch fork
+        git config --global user.email "CI@local"
+        git config --global user.name "CI Bot"
+        git merge fork/master
+        brew update
     - name: Install brew dependencies
-      run: brew install p7zip libpng libzip libuv protobuf
+      run: |
+        export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12
+        export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
+        brew install p7zip libzip libuv protobuf
     - name: Install python dependencies
       run: pip3 install jinja2 ds_store
     - name: Download Qt
