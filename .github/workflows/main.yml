@@ -36,7 +36,7 @@ jobs:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - name: Find Python
-      run:  python2 --version && ls -l /Users/runner/hostedtoolcache/Python/2.*/* || :
+      run: 'python2 --version && ls -l /Users/runner/hostedtoolcache/Python/2.*/* || :'
     - name: Install python dependencies
       run: pip install jinja2 ds_store
     - name: Download Qt
