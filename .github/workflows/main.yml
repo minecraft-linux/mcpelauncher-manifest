@@ -20,12 +20,12 @@ jobs:
     - name: Apply custom patch and Update brew
       working-directory: "/usr/local/Homebrew"
       run: |
+        brew update
         git remote add fork https://github.com/ChristopherHX/brew.git
         git fetch fork
         git config --global user.email "CI@local"
         git config --global user.name "CI Bot"
         git merge fork/master
-        brew update
     - name: Install brew dependencies
       run: |
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
@@ -67,12 +67,12 @@ jobs:
     - name: Apply custom patch and Update brew
       working-directory: "/usr/local/Homebrew"
       run: |
+        brew update
         git remote add fork https://github.com/ChristopherHX/brew.git
         git fetch fork
         git config --global user.email "CI@local"
         git config --global user.name "CI Bot"
         git merge fork/master
-        brew update
     - name: Install brew dependencies
       run: |
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
