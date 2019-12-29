@@ -8,6 +8,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
+    - name: Find Python
+      run: ls -l /Users/runner/hostedtoolcache/Python/* && ls -l /Users/runner/hostedtoolcache/Python/2.*/ && python2 --version
     - uses: actions/checkout@v1
       with:
         repository: ChristopherHX/osx-packaging-scripts
