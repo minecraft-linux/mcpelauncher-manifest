@@ -28,7 +28,8 @@ jobs:
         git merge fork/master
     - name: Install brew dependencies
       run: |
-        brew install p7zip python || :
+        brew install p7zip || :
+        brew upgrade python || :
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         brew install libzip libuv protobuf || :
@@ -80,7 +81,8 @@ jobs:
         git merge fork/master
     - name: Install brew dependencies
       run: |
-        brew install p7zip python || :
+        brew install p7zip || :
+        brew upgrade python || :
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
         brew install libzip libuv protobuf || :
@@ -120,6 +122,6 @@ jobs:
       with:
         name: DMG(sdk10.14)
     - name: Move to artifacts
-      run: mkdir -p artifacts && mv DMG(sdk10.13)/*.dmg ./artifacts/Minecraft_Bedrock_Launcher_FORK_sdk10.13.dmg &&  mv DMG(sdk10.14)/*.dmg ./artifacts/Minecraft_Bedrock_Launcher_FORK_sdk10.14.dmg
+      run: mkdir -p artifacts && mv DMG\(sdk10.13\)/*.dmg ./artifacts/Minecraft_Bedrock_Launcher_FORK_sdk10.13.dmg &&  mv DMG\(sdk10.14\)/*.dmg ./artifacts/Minecraft_Bedrock_Launcher_FORK_sdk10.14.dmg
     - name: Upload Latest
       run: curl -L https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz --output ghr.tar.gz && tar -xf ghr.tar.gz && ./ghr*/ghr -t ${{ secrets.MacOSX1013sdk }} -u ChristopherHX -r ChristopherHX/mcpelauncher-manifest -delete -b "[First read my README](https://github.com/ChristopherHX/mcpelauncher-manifest) for current Features, known Issues / Bugs, Sourcecode or Linux Releases"$'\n'"**Only MacOs 10.12, 10.13 and 10.14 are supported**" MacOsLatest artifacts
