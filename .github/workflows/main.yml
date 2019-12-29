@@ -38,7 +38,7 @@ jobs:
     - name: Show python versions
       run: python --version && python2 --version && python3 --version
     - name: Install python dependencies
-      run: python3 -m pip install --upgrade pip && python3 -m pip3 install jinja2 ds_store
+      run: python3 -m pip install --upgrade pip && pip3 install jinja2 ds_store
     - name: Download Qt
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: ./download_qt.sh
