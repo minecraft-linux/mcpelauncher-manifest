@@ -32,7 +32,7 @@ jobs:
         brew upgrade python || :
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
-        brew install libzip libuv protobuf || :
+        brew install libzip libuv protobuf@3.7 || :
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
@@ -85,7 +85,7 @@ jobs:
         brew upgrade python || :
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
-        brew install libzip libuv protobuf || :
+        brew install libzip libuv protobuf@3.7 || :
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using semvers version range syntax.
