@@ -30,7 +30,7 @@ jobs:
       run: |
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
-        brew install p7zip libzip libuv protobuf
+        brew install p7zip libzip libuv protobuf || :
     - name: Install python dependencies
       run: pip3 install jinja2 ds_store
     - name: Download Qt
@@ -77,7 +77,7 @@ jobs:
       run: |
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
-        brew install p7zip libzip libuv protobuf
+        brew install p7zip libzip libuv protobuf || :
     - name: Install python dependencies
       run: pip3 install jinja2 ds_store
     - name: Download Qt
