@@ -28,7 +28,7 @@ jobs:
         brew update
     - name: Install brew dependencies
       run: |
-        export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12
+        export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
         brew install p7zip libzip libuv protobuf
     - name: Install python dependencies
