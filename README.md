@@ -97,15 +97,16 @@ https://github.com/ChristopherHX/mcpelauncher-manifest/releases
 
   `sudo pacman -Syu --noconfirm git util-linux sudo fakeroot binutils autoconf automake libtool pkgconf file make`
 
-  `(git clone https://github.com/ChristopherHX/lib32-check.git lib32-check || cd lib32-check && git pull) && cd lib32-check && makepkg --syncdeps --noconfirm --install && cd .. && (git clone https://aur.archlinux.org/lib32-libevdev.git lib32-libevdev && cd lib32-libevdev || cd lib32-libevdev && git pull) && cd lib32-libevdev && makepkg --syncdeps --noconfirm --install || :
+  `(git clone https://github.com/ChristopherHX/lib32-check.git lib32-check || cd lib32-check && git pull) && cd lib32-check && makepkg --syncdeps --noconfirm --install && cd .. && (git clone https://aur.archlinux.org/lib32-libevdev.git lib32-libevdev && cd lib32-libevdev || cd lib32-libevdev && git pull) && cd lib32-libevdev && makepkg --syncdeps --noconfirm --install || :`
 
 - compile and install the core launcher
 
-  `(git clone https://github.com/ChristopherHX/mcpelauncher-linux-git.git mcpelauncher-linux-git || cd mcpelauncher-linux-git && git pull) && cd mcpelauncher-linux-git && makepkg --syncdeps --noconfirm --install || :
+  `(git clone https://github.com/ChristopherHX/mcpelauncher-linux-git.git mcpelauncher-linux-git || cd mcpelauncher-linux-git && git pull) && cd mcpelauncher-linux-git && makepkg --syncdeps --noconfirm --install || :`
 
 - compile and install Xbox live login support
 
-  `((git clone https://aur.archlinux.org/mcpelauncher-msa-git.git mcpelauncher-msa-git || cd mcpelauncher-msa-git && git pull)  && cd mcpelauncher-msa-git && makepkg --syncdeps --noconfirm --install || :) && ((git clone https://aur.archlinux.org/mcpelauncher-msa-ui-qt-git.git mcpelauncher-msa-ui-qt-git || cd mcpelauncher-msa-ui-qt-git && git pull) && cd mcpelauncher-msa-ui-qt-git && makepkg --syncdeps --noconfirm --install || :)
+  `((git clone https://aur.archlinux.org/mcpelauncher-msa-git.git mcpelauncher-msa-git || cd mcpelauncher-msa-git && git pull)  && cd mcpelauncher-msa-git && makepkg --syncdeps --noconfirm --install || :) && ((git clone https://aur.archlinux.org/mcpelauncher-msa-ui-qt-git.git mcpelauncher-msa-ui-qt-git || cd mcpelauncher-msa-ui-qt-git && git pull) && cd mcpelauncher-msa-ui-qt-git && makepkg --syncdeps --noconfirm --install || :)`
+
 
 - compile and install the launcher GUI
 
