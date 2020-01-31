@@ -26,6 +26,7 @@ jobs:
       run: |
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.13.sdk
+        brew reinstall python
         brew install p7zip libzip libuv protobuf || :
     - uses: actions/setup-python@v1
       with:
@@ -80,6 +81,7 @@ jobs:
       run: |
         export HOMEBREW_MACOSX_DEPLOYMENT_TARGET=10.12.0
         export HOMEBREW_SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
+        brew reinstall python
         brew install p7zip libzip libuv protobuf || :
     - uses: actions/setup-python@v1
       with:
