@@ -34,6 +34,11 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 - More prebuild Linux (disribution) packages supported than the original launcher
   - **Pure Linux x86 distro support on old PCs (SSSE3 CPU instruction set needed)**
   - **Linux ARM appimage**
+- Expermental (Chinese) IME Support with eglut (not GLFW)
+  - type Chinese with IME and play without IME
+    - You need to manually click the Textbox to allow IME to open
+  - If IME don't type any chars check your locale
+    - For Chinese e.g. `export LC_CTYPE=zh_CN.UTF-8` and then launch from Terminal
 
 # [Known Issues / Bugs](https://github.com/ChristopherHX/mcpelauncher-manifest/issues)
 
