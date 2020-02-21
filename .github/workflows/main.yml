@@ -47,9 +47,9 @@ jobs:
       run: |
         export MACOSX_DEPLOYMENT_TARGET=10.12
         export SDKROOT=${{ github.workspace }}/../MacOSX10.14.sdk
-        python3 __main__.py --qt-path qt/*/*/
+        python3 __main__.py --qt-path qt/*/*/ --update-url https://github.com/ChristopherHX/mcpelauncher-manifest/releases/download/Snapshot/version.osx --build-id ${GITHUB_RUN_NUMBER}
     - name: Build .dmg
       working-directory: ${{ github.workspace }}/../osx-packaging-scripts
       run: python3 build_dmg.py
     - name: Upload Latest
-      run: curl -L https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_darwin_amd64.zip --output ghr.zip && unzip ghr.zip && ./ghr*/ghr -t ${{ secrets.MacOSX1013sdk }} -u ChristopherHX -r mcpelauncher-manifest -recreate -b "[First read my README](https://github.com/ChristopherHX/mcpelauncher-manifest) for current Features, known Issues / Bugs, Sourcecode or Linux Releases"$'\n'"**Only MacOs (10.12 brew stopped supporting it), 10.13 and 10.14 are supported**"$'\n'"**reduced gpu performance, some textures are white** Patched [ANGLE - Almost Native Graphics Layer Engine](https://github.com/minecraft-linux/angle)" Snapshot "${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg"
+      run: mkdir -p dist && mv ""${{ github.workspace }}/../osx-packaging-scripts/output/Minecraft Bedrock Launcher.dmg" dist/Minecraft_Bedrock_Launcher.dmg && echo build_id=${GITHUB_RUN_NUMBER}$'\n'download_url=https://github.com/ChristopherHX/mcpelauncher-manifest/releases/download/Snapshot/Minecraft_Bedrock_Launcher.dmg > dist/version.osx && curl -L https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_darwin_amd64.zip --output ghr.zip && unzip ghr.zip && ./ghr*/ghr -t ${{ secrets.MacOSX1013sdk }} -u ChristopherHX -r mcpelauncher-manifest -recreate -b "[First read my README](https://github.com/ChristopherHX/mcpelauncher-manifest) for current Features, known Issues / Bugs, Sourcecode or Linux Releases"$'\n'"**Only MacOs (10.12 brew stopped supporting it), 10.13 and 10.14 are supported**"$'\n'"**reduced gpu performance, some textures are white** Patched [ANGLE - Almost Native Graphics Layer Engine](https://github.com/minecraft-linux/angle)" Snapshot dist/
