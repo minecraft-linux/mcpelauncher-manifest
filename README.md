@@ -1,12 +1,14 @@
 # mcpelauncher-manifest
-A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedrock Edition Minecraft launcher **Client** that supports 1.13.x and 1.14.x. **Heavy based on minecraft-linux**
+A unstable and dirty fork of the Linux and Mac OS Bedrock Edition Minecraft launcher **client** that supports 1.13+ (incl. most beta builds)
 
  <p align="center">
   <img src="https://user-images.githubusercontent.com/24195572/71060819-64f78c80-211b-11ea-8ea4-f1c2dabb9b54.png"/>
 </p>
 
 # Features
-- Full Linux x86, amd64 and **ARM** support
+- Random unknown crashes
+  - provide crashlog and compilerversion (or mention the specfic download artifact)
+- Full Linux x86, amd64 and **arm** support
 - Limited macOS Sierra, High Sierra, Mojave support
   - **reduced gpu performance** Patched [ANGLE - Almost Native Graphics Layer Engine](https://github.com/minecraft-linux/angle)
 - Support for new Minecraft Releases (1.13+) out of Box
@@ -16,6 +18,7 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
   - Sometime fails silently without an errormessage (might be in the log)
     - to try it again close Minecraft and open it again
     - may caused by network problems (e.g. unstable internet access)
+    - now crashes after trying starting msa multiple times without success
   - Friend joining
     - Sometimes only successful during world loading or won't succeed
 - less game patches needed than the original launcher
@@ -45,17 +48,15 @@ A fork of MCPE Launcher created by ChristopherHX for the Linux and Mac OS Bedroc
 # Installation Guide
 **Currently are the mcpelauncher-client and mcpelauncher-server &ast;.deb packages incompatible**
 
-## Install Prebuilds for Debian / Ubuntu / archlinux / manjarolinux
+## AppImage (with update indicator)
+and Packages for Debian, Ubuntu, archlinux and manjarolinux
 https://github.com/ChristopherHX/linux-packaging-scripts/releases
 
-### Appimage minimal dependencies - Gamelauncher not found (Debian (ChromeOS Linux) / Ubuntu / AMD64)
-- `sudo dpkg --add-architecture i386 && sudo apt-get update && sudo apt install libc6-i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386`
 ## Install Prebuilds for MacOs 10.12 - 10.14
 https://github.com/ChristopherHX/mcpelauncher-manifest/releases
 
 ## Build from Source
-**gcc < 8.3.0 generates unusable launchers**
-### Debian based (apt, dpkg, .deb)
+### Debian
 - First, make sure you have all needed dependencies (drivers) installed:
 - x86, x86_64, AMD64, x64:
 
@@ -88,15 +89,16 @@ https://github.com/ChristopherHX/mcpelauncher-manifest/releases
     `~/mcpelauncher/build/mcpelauncher-client/mcpelauncher-client -dg ~/.local/share/mcpelauncher/versions/1.13.X`
   - armhf, arm64 (non Raspberry Pi):
 
-    `LD_LIBRARY_PATH=$HOME/mesa/lib LIBGL_DRIVERS_PATH=$HOME/mesa/lib/dri GBM_DRIVERS_PATH=$HOME/mesa/lib OPENSSL_armcap=0 ~/mcpelauncher/build/mcpelauncher-client/mcpelauncher-client -dg ~/.local/share/mcpelauncher/versions/1.13.X`
+    `OPENSSL_armcap=0 ~/mcpelauncher/build/mcpelauncher-client/mcpelauncher-client -dg ~/.local/share/mcpelauncher/versions/1.13.X`
   - armhf, arm64 Raspberry Pi:
-
+    - Warning only mesa 13.x from https://www.mesa3d.org/ seems to avoid huge rendering glitches
+    - But will cause a Blackscreen if another mesa version is used, this affects the Pi4!
     `LD_LIBRARY_PATH=$HOME/mesa/lib LIBGL_DRIVERS_PATH=$HOME/mesa/lib/dri GBM_DRIVERS_PATH=$HOME/mesa/lib OPENSSL_armcap=0 ~/mcpelauncher/build/mcpelauncher-client/mcpelauncher-client -dg ~/.local/share/mcpelauncher/versions/1.13.X`
   - Then Minecraft Bedrock 1.13.x will begin to start up. Make sure you replace `1.13.X` with your 1.13.X or 1.14.X installation, otherwise this setup will not work for you
 
 **Before starting the new launcher, please remember to download the game with the original Bedrock launcher QT GUI!**
 
-### Archlinux based (pacman)
+### Archlinux
 - prerequisites
   - Add the [multilib Repository](https://wiki.archlinux.org/index.php/Official_repositories#multilib) One time setup (Manjaro has it enabled by default, `sudo bash -c "echo '[multilib]' >> /etc/pacman.conf && echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf"`)
 
