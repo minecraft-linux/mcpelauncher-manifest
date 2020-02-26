@@ -1,5 +1,5 @@
 # mcpelauncher-manifest
-A unstable and dirty fork of the Linux and Mac OS Bedrock Edition Minecraft launcher **client** that supports 1.13+ (incl. most beta builds)
+An unstable and dirty fork of the Linux and Mac OS Minecraft Bedrock Edition launcher **client** that supports 1.11+ (incl. most beta builds, 1.0-1.10 cannot be resized after start)
 
  <p align="center">
   <img src="https://user-images.githubusercontent.com/24195572/71060819-64f78c80-211b-11ea-8ea4-f1c2dabb9b54.png"/>
@@ -10,7 +10,10 @@ A unstable and dirty fork of the Linux and Mac OS Bedrock Edition Minecraft laun
   - provide crashlog and compilerversion (or mention the specfic download artifact)
 - Full Linux x86, amd64 and **arm** support
 - Limited macOS Sierra, High Sierra, Mojave support
-  - **reduced gpu performance** Patched [ANGLE - Almost Native Graphics Layer Engine](https://github.com/minecraft-linux/angle)
+  - **reduced gpu performance** uses a patched [ANGLE - Almost Native Graphics Layer Engine](https://github.com/minecraft-linux/angle) to replace the crashing patch from minecraft-linux
+    - render delay while joining the world or server with a lot of objects
+    - mobs aren't rendered correctly (known as white mobs (sheeps, spiders...))
+      - workaround set initial window size to display resolution
 - Support for new Minecraft Releases (1.13+) out of Box
   - **The mcpelauncher-server only supports 1.12.0.28 and 1.12.1.1**
   - Might break sometime in the future
@@ -37,11 +40,13 @@ A unstable and dirty fork of the Linux and Mac OS Bedrock Edition Minecraft laun
 - More prebuild Linux (disribution) packages supported than the original launcher
   - **Pure Linux x86 distro support on old PCs (SSSE3 CPU instruction set needed)**
   - **Linux ARM appimage**
-- Expermental (Chinese) IME Support with eglut (not GLFW)
-  - type Chinese with IME and play without IME
+    - experimental and was only tested on raspbian
+- Experimental (Chinese, Japanese) IME Support with eglut (not GLFW)
+  - type Chinese / Japanese with IME while a Textbox is open
     - You need to manually click the Textbox to allow IME to open
-  - If IME don't type any chars check your locale
-    - For Chinese e.g. `export LC_CTYPE=zh_CN.UTF-8` and then launch from Terminal
+    - Only ibus IME is known to work
+      - ibus-pinyin
+      - ibus-anthy
 
 # [Known Issues / Bugs](https://github.com/ChristopherHX/mcpelauncher-manifest/issues)
 
