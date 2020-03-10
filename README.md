@@ -48,7 +48,10 @@ An unstable and dirty fork of the Linux and Mac OS Minecraft Bedrock Edition lau
       - ibus-pinyin
       - ibus-anthy
 
-# [Known Issues / Bugs](https://github.com/ChristopherHX/mcpelauncher-manifest/issues)
+# Known Issues / Bugs
+[Game Launcher](https://github.com/ChristopherHX/mcpelauncher-manifest/issues)
+[Game Downloader / Starter](https://github.com/ChristopherHX/mcpelauncher-ui-manifest/issues)
+[Xbox Live](https://github.com/ChristopherHX/msa-manifest/issues)
 
 # Installation Guide
 **Currently are the mcpelauncher-client and mcpelauncher-server &ast;.deb packages incompatible**
