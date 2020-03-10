@@ -63,7 +63,7 @@
 	url = ../../minecraft-linux/arg-parser.git
 [submodule "mcpelauncher-linux-bin"]
 	path = mcpelauncher-linux-bin
-	url = ../../minecraft-linux/mcpelauncher-linux-bin.git
+	url = ../mcpelauncher-linux-bin.git
 [submodule "epoll-shim"]
 	path = epoll-shim
 	url = ../../minecraft-linux/epoll-shim.git
