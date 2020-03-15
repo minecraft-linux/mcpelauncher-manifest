@@ -45,7 +45,7 @@
 	url = ../minecraft-symbols.git
 [submodule "minecraft-imported-symbols"]
 	path = minecraft-imported-symbols
-	url = ../../minecraft-linux/minecraft-imported-symbols.git
+	url = ../minecraft-imported-symbols.git
 [submodule "mcpelauncher-common"]
 	path = mcpelauncher-common
 	url = ../../minecraft-linux/mcpelauncher-common.git
