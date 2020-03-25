@@ -42,6 +42,9 @@ An unstable and dirty fork of the Linux and Mac OS Minecraft Bedrock Edition lau
   - **Linux ARM appimage**
     - experimental and was only tested on raspbian
 - Experimental (Chinese, Japanese) IME Support with eglut (not GLFW)
+  - **Now have to explicitly to be enabled with**
+    - `MCPELAUNCHER_FEATURE_IME=1`
+    - to many distros have issues, with x11 ime or xim
   - type Chinese / Japanese with IME while a Textbox is open
     - You need to manually click the Textbox to allow IME to open
     - Only ibus IME is known to work
