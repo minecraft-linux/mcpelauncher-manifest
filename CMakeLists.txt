@@ -110,7 +110,6 @@ add_subdirectory(mcpelauncher-core)
 if (BUILD_CLIENT)
     add_subdirectory(mcpelauncher-client)
 endif()
-add_subdirectory(mcpelauncher-just)
 
 install(DIRECTORY ${NATIVES_PATH_DIR}/libs COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
         PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)

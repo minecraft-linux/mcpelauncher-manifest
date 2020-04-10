@@ -67,6 +67,3 @@
 [submodule "mcpelauncher-mac-bin"]
 	path = mcpelauncher-mac-bin
 	url = ../mcpelauncher-mac-bin.git
-[submodule "mcpelauncher-just"]
-	path = mcpelauncher-just
-	url = ../mcpelauncher-just.git
