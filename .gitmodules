@@ -64,3 +64,9 @@
 [submodule "mcpelauncher-mac-bin"]
 	path = mcpelauncher-mac-bin
 	url = ../mcpelauncher-mac-bin.git
+[submodule "fake-jni"]
+	path = fake-jni
+	url = ../fake-jni.git
+[submodule "baron"]
+	path = baron
+	url = ../baron.git

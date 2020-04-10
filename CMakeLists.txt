@@ -6,6 +6,7 @@ if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m32")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
+    set(CMAKE_CXX_COMPILER_TARGET "i686-linux-gnu")
 endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-delete-null-pointer-checks")
 
@@ -107,6 +108,8 @@ add_subdirectory(mcpelauncher-common)
 add_subdirectory(mcpelauncher-core)
 
 if (BUILD_CLIENT)
+    add_subdirectory(fake-jni)
+    add_subdirectory(baron)
     add_subdirectory(mcpelauncher-client)
 endif()
 
