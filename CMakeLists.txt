@@ -45,7 +45,6 @@ endfunction()
 git_commit_hash(${CMAKE_SOURCE_DIR} MANIFEST_GIT_COMMIT_HASH)
 
 option(BUILD_CLIENT "Enables building of the client launcher." ON)
-option(BUILD_SERVER "Enables building of the server launcher." ON)
 option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
 
 if (APPLE)
@@ -114,10 +113,7 @@ add_subdirectory(mcpelauncher-core)
 if (BUILD_CLIENT)
     add_subdirectory(mcpelauncher-client)
 endif()
-if (BUILD_SERVER)
-    add_subdirectory(mcpelauncher-server)
-    add_subdirectory(mcpelauncher-just)
-endif()
+add_subdirectory(mcpelauncher-just)
 
 install(DIRECTORY ${NATIVES_PATH_DIR}/libs COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
         PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
