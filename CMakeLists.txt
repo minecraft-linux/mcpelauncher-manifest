@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 enable_language(C CXX ASM)
 
+set(CMAKE_CXX_STANDARD 17)
+
 if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -m32")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
@@ -108,6 +110,7 @@ add_subdirectory(mcpelauncher-common)
 add_subdirectory(mcpelauncher-core)
 
 if (BUILD_CLIENT)
+    add_subdirectory(android-support-headers)
     add_subdirectory(fake-jni)
     add_subdirectory(baron)
     add_subdirectory(mcpelauncher-client)

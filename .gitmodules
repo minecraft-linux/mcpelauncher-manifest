@@ -70,3 +70,6 @@
 [submodule "baron"]
 	path = baron
 	url = ../baron.git
+[submodule "android-support-headers"]
+	path = android-support-headers
+	url = ../android-support-headers.git
