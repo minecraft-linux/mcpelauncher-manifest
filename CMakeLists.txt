@@ -102,7 +102,6 @@ if (BUILD_CLIENT)
     add_subdirectory(cll-telemetry)
 endif()
 
-add_subdirectory(minecraft-symbols)
 add_subdirectory(minecraft-imported-symbols)
 add_subdirectory(mcpelauncher-common)
 add_subdirectory(mcpelauncher-core)

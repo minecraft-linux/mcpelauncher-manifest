@@ -37,9 +37,6 @@
 [submodule "cll-telemetry"]
 	path = cll-telemetry
 	url = ../cll-telemetry.git
-[submodule "minecraft-symbols"]
-	path = minecraft-symbols
-	url = ../minecraft-symbols.git
 [submodule "minecraft-imported-symbols"]
 	path = minecraft-imported-symbols
 	url = ../minecraft-imported-symbols.git
