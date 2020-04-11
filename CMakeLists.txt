@@ -10,7 +10,7 @@ if(NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
     set(CMAKE_CXX_COMPILER_TARGET "i686-linux-gnu")
 endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-delete-null-pointer-checks")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-delete-null-pointer-checks")
 
 string(TIMESTAMP BUILD_TIMESTAMP "%Y%m%d-%H%M%S" UTC)
 
