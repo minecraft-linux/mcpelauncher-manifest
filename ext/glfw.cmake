@@ -13,7 +13,6 @@ set_property(TARGET glfw3 PROPERTY IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/ext/glf
 if (APPLE)
     set_property(TARGET glfw3 PROPERTY INTERFACE_LINK_LIBRARIES "-framework Cocoa" "-framework IOKit" "-framework CoreFoundation" "-framework CoreVideo")
 else()
-    find_package(X11 REQUIRED)
     set_property(TARGET glfw3 PROPERTY INTERFACE_LINK_LIBRARIES ${X11_X11_LIB} ${X11_Xcursor_LIB} ${X11_Xrandr_LIB} ${X11_Xxf86vm_LIB} ${X11_Xinerama_LIB})
 endif()
 set_property(TARGET glfw3 PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/ext/glfw/include/)
