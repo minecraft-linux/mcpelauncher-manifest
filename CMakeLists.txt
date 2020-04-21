@@ -94,7 +94,8 @@ add_subdirectory(file-util)
 add_subdirectory(properties-parser)
 add_subdirectory(arg-parser)
 
-add_subdirectory(libhybris)
+add_subdirectory(mcpelauncher-linker)
+add_subdirectory(libc-shim)
 
 if (BUILD_CLIENT)
     # MSA is only required with the client

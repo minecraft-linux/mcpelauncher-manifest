@@ -19,9 +19,6 @@
 [submodule "msa-daemon-client"]
 	path = msa-daemon-client
 	url = ../msa-daemon-client.git
-[submodule "libhybris"]
-	path = libhybris
-	url = ../libhybris.git
 [submodule "eglut"]
 	path = eglut
 	url = ../eglut.git
@@ -73,3 +70,9 @@
 [submodule "android-support-headers"]
 	path = android-support-headers
 	url = ../android-support-headers.git
+[submodule "libc-shim"]
+	path = libc-shim
+	url = ../libc-shim.git
+[submodule "mcpelauncher-linker"]
+	path = mcpelauncher-linker
+	url = ../mcpelauncher-linker.git
