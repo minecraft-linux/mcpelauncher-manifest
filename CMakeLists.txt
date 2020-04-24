@@ -126,7 +126,7 @@ if (BUILD_CLIENT)
     add_subdirectory(mcpelauncher-client)
 endif()
 
-install(DIRECTORY ${NATIVES_PATH_DIR}/libs COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
+install(DIRECTORY ${NATIVES_PATH_DIR}/lib COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
         PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
 
 option(MSA_DAEMON_PATH "Additional paths in which the MSA daemon should be looked in. Relative to the application directory." )
