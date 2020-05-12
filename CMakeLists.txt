@@ -58,7 +58,7 @@ option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
 
 if (APPLE)
     set(NATIVES_PATH_DIR "${CMAKE_SOURCE_DIR}/mcpelauncher-mac-bin")
-    set(NATIVES_PATH_LIB_DIR "${NATIVES_PATH_DIR}/libs")
+    set(NATIVES_PATH_LIB_DIR "${NATIVES_PATH_DIR}/lib")
 else()
     set(NATIVES_PATH_DIR "${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
     set(NATIVES_PATH_LIB_DIR "${NATIVES_PATH_DIR}/lib")
