@@ -1,78 +1,78 @@
 [submodule "logger"]
 	path = logger
-	url = ../../minecraft-linux/logger.git
+	url = https://github.com/minecraft-linux/logger.git
 [submodule "base64"]
 	path = base64
-	url = ../../minecraft-linux/base64.git
+	url = https://github.com/minecraft-linux/base64.git
 [submodule "file-util"]
 	path = file-util
-	url = ../../minecraft-linux/file-util.git
+	url = https://github.com/minecraft-linux/file-util.git
 [submodule "properties-parser"]
 	path = properties-parser
-	url = ../../minecraft-linux/properties-parser.git
+	url = https://github.com/minecraft-linux/properties-parser.git
 [submodule "simple-ipc"]
 	path = simple-ipc
-	url = ../../MCMrARM/simple-ipc.git
+	url = https://github.com/MCMrARM/simple-ipc.git
 [submodule "daemon-utils"]
 	path = daemon-utils
-	url = ../../minecraft-linux/daemon-utils.git
+	url = https://github.com/minecraft-linux/daemon-utils.git
 [submodule "msa-daemon-client"]
 	path = msa-daemon-client
-	url = ../../minecraft-linux/msa-daemon-client.git
+	url = https://github.com/minecraft-linux/msa-daemon-client.git
 [submodule "libhybris"]
 	path = libhybris
-	url = ../../minecraft-linux/libhybris.git
+	url = https://github.com/minecraft-linux/libhybris.git
 [submodule "libjnivm"]
         path = libjnivm
-        url = ../libjnivm.git
+        url = https://github.com/ChristopherHX/libjnivm.git
 [submodule "eglut"]
 	path = eglut
-	url = ../eglut.git
+	url = https://github.com/ChristopherHX/eglut.git
 [submodule "linux-gamepad"]
 	path = linux-gamepad
-	url = ../../MCMrARM/linux-gamepad.git
+	url = https://github.com/MCMrARM/linux-gamepad.git
 [submodule "game-window"]
 	path = game-window
-	url = ../game-window.git
+	url = https://github.com/ChristopherHX/game-window.git
 [submodule "file-picker"]
 	path = file-picker
-	url = ../../minecraft-linux/file-picker.git
+	url = https://github.com/minecraft-linux/file-picker.git
 [submodule "cll-telemetry"]
 	path = cll-telemetry
-	url = ../../minecraft-linux/cll-telemetry.git
+	url = https://github.com/minecraft-linux/cll-telemetry.git
 [submodule "minecraft-symbols"]
 	path = minecraft-symbols
-	url = ../minecraft-symbols.git
+	url = https://github.com/ChristopherHX/minecraft-symbols.git
 [submodule "minecraft-imported-symbols"]
 	path = minecraft-imported-symbols
-	url = ../minecraft-imported-symbols.git
+	url = https://github.com/ChristopherHX/minecraft-imported-symbols.git
 [submodule "mcpelauncher-common"]
 	path = mcpelauncher-common
-	url = ../../minecraft-linux/mcpelauncher-common.git
+	url = https://github.com/minecraft-linux/mcpelauncher-common.git
 [submodule "mcpelauncher-core"]
 	path = mcpelauncher-core
-	url = ../mcpelauncher-core.git
+	url = https://github.com/ChristopherHX/mcpelauncher-core.git
 [submodule "mcpelauncher-client"]
 	path = mcpelauncher-client
-	url = ../mcpelauncher-client.git
+	url = https://github.com/ChristopherHX/mcpelauncher-client.git
 [submodule "mcpelauncher-server"]
 	path = mcpelauncher-server
-	url = ../mcpelauncher-server.git
+	url = https://github.com/ChristopherHX/mcpelauncher-server.git
 [submodule "arg-parser"]
 	path = arg-parser
-	url = ../../minecraft-linux/arg-parser.git
+	url = https://github.com/minecraft-linux/arg-parser.git
 [submodule "mcpelauncher-linux-bin"]
 	path = mcpelauncher-linux-bin
-	url = ../mcpelauncher-linux-bin.git
+	url = https://github.com/ChristopherHX/mcpelauncher-linux-bin.git
 [submodule "epoll-shim"]
 	path = epoll-shim
-	url = ../../minecraft-linux/epoll-shim.git
+	url = https://github.com/minecraft-linux/epoll-shim.git
 [submodule "osx-elf-header"]
 	path = osx-elf-header
-	url = ../../minecraft-linux/osx-elf-header.git
+	url = https://github.com/minecraft-linux/osx-elf-header.git
 [submodule "mcpelauncher-mac-bin"]
 	path = mcpelauncher-mac-bin
-	url = ../../minecraft-linux/mcpelauncher-mac-bin.git
+	url = https://github.com/minecraft-linux/mcpelauncher-mac-bin.git
 [submodule "mcpelauncher-just"]
 	path = mcpelauncher-just
-	url = ../../minecraft-linux/mcpelauncher-just.git
+	url = https://github.com/minecraft-linux/mcpelauncher-just.git
