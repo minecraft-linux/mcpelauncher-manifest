@@ -21,7 +21,7 @@
 	url = https://github.com/minecraft-linux/msa-daemon-client.git
 [submodule "libhybris"]
 	path = libhybris
-	url = https://github.com/minecraft-linux/libhybris.git
+	url = https://github.com/ChristopherHX/libhybris.git
 [submodule "libjnivm"]
         path = libjnivm
         url = https://github.com/ChristopherHX/libjnivm.git
