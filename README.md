@@ -130,7 +130,8 @@ cd mcpelauncher-msa-ui-qt-git
 makepkg --syncdeps --noconfirm --install
 cd ..
 # compile and install the launcher GUI
-git clone https://github.com/ChristopherHX/mcpelauncher-ui-git.git mcpelauncher-ui-git || cd mcpelauncher-ui-git && git pull cd mcpelauncher-ui-git
+git clone https://github.com/ChristopherHX/mcpelauncher-ui-git.git mcpelauncher-ui-git || cd mcpelauncher-ui-git && git pull
+cd mcpelauncher-ui-git
 makepkg --syncdeps --noconfirm --install
 cd ..
 ```
