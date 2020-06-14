@@ -154,8 +154,7 @@ mkdir -p mcpelauncher && cd mcpelauncher
 sudo eopkg install -c system.devel
 sudo eopkg install git mesalib-32bit-devel openssl-32bit-devel curl-32bit-devel libpng-32bit-devel libx11-32bit-devel gcc g++ libgcc-32bit libstdc++-32bit cmake make binutils glibc-32bit-devel libgudev-32bit-devel libxi-32bit-devel
 # Install libevdev-32bit-devel manually
-git clone https://gitlab.freedesktop.org/libevdev/libevdev.git || cd libevdev
-git pull
+git clone https://gitlab.freedesktop.org/libevdev/libevdev.git || cd libevdev && git pull
 cd libevdev
 ./autogen.sh CFLAGS=-m32
 make -j8
