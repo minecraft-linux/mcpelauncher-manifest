@@ -109,7 +109,7 @@ OPENSSL_armcap=0 ~/mcpelauncher/build/mcpelauncher-client/mcpelauncher-client -d
 ```
 # Install dependencies
 sudo pacman -Syu --noconfirm git util-linux sudo fakeroot binutils autoconf automake libtool pkgconf file make
-git clone https://github.com/ChristopherHX/lib32-check.git lib32-check || cd lib32-check && git pull
+git clone https://aur.archlinux.org/lib32-check.git lib32-check || cd lib32-check && git pull
 cd lib32-check 
 makepkg --syncdeps --noconfirm --install
 cd ..
