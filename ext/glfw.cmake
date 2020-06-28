@@ -1,19 +1,13 @@
-include(ExternalProject)
+include(FetchContent)
 
-ExternalProject_Add(
+FetchContent_Declare(
         glfw3_ext
         URL "https://github.com/minecraft-linux/glfw/archive/master.zip"
-        INSTALL_DIR ${CMAKE_BINARY_DIR}/ext/glfw
-        CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/ext/glfw" "-DBUILD_SHARED_LIBS=OFF" "-DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}" "-DCMAKE_LINK_FLAGS=${CMAKE_LINK_FLAGS}" "-DCMAKE_LIBRARY_ARCHITECTURE=${CMAKE_LIBRARY_ARCHITECTURE}"
 )
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/ext/glfw/include/)
-add_library(glfw3 STATIC IMPORTED)
-add_dependencies(glfw3 glfw3_ext)
-set_property(TARGET glfw3 PROPERTY IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/ext/glfw/lib/libglfw3.a)
-if (APPLE)
-    set_property(TARGET glfw3 PROPERTY INTERFACE_LINK_LIBRARIES "-framework Cocoa" "-framework IOKit" "-framework CoreFoundation" "-framework CoreVideo")
-else()
-    find_package(X11 REQUIRED)
-    set_property(TARGET glfw3 PROPERTY INTERFACE_LINK_LIBRARIES ${X11_X11_LIB} ${X11_Xcursor_LIB} ${X11_Xrandr_LIB} ${X11_Xxf86vm_LIB} ${X11_Xinerama_LIB})
+
+FetchContent_GetProperties(glfw3_ext)
+if(NOT glfw3_ext_POPULATED)
+  FetchContent_Populate(glfw3_ext)
+  add_subdirectory(${glfw3_ext_SOURCE_DIR} ${glfw3_ext_BINARY_DIR})
 endif()
-set_property(TARGET glfw3 PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/ext/glfw/include/)
+add_library(glfw3 ALIAS glfw)

@@ -1,12 +1,15 @@
-include(ExternalProject)
+include(FetchContent)
 
-ExternalProject_Add(
+FetchContent_Declare(
         nlohmann_json_ext
-        URL "https://github.com/nlohmann/json/releases/download/v3.7.0/include.zip"
-        CONFIGURE_COMMAND "" BUILD_COMMAND "" INSTALL_DIR "" INSTALL_COMMAND ""
+        URL "https://github.com/nlohmann/json/releases/download/v3.7.3/include.zip"
 )
-ExternalProject_Get_Property(nlohmann_json_ext SOURCE_DIR)
-file(MAKE_DIRECTORY ${SOURCE_DIR})
+
+FetchContent_GetProperties(nlohmann_json_ext)
+if(NOT nlohmann_json_ext_POPULATED)
+  FetchContent_Populate(nlohmann_json_ext)
+endif()
+
 add_library(nlohmann_json INTERFACE IMPORTED)
 add_dependencies(nlohmann_json nlohmann_json_ext)
-set_property(TARGET nlohmann_json PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${SOURCE_DIR})
+set_property(TARGET nlohmann_json PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${nlohmann_json_ext_SOURCE_DIR}/include")
