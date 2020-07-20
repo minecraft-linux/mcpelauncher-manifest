@@ -94,7 +94,7 @@ cd ../..
 mkdir build
 cd build
 CC=arm-linux-gnueabihf-gcc CXX=arm-linux-gnueabihf-g++ cmake ..
-make -j12`
+make -j12
 ```
 ##### Usage
 **Before starting the new launcher, please remember to download the game with the Bedrock launcher QT GUI!**
