@@ -1,7 +1,7 @@
 include(ExternalProject)
 
 if (NOT APPLE)
-    find_package(OpenSSL REQUIRED)
+    find_package(OpenSSL REQUIRED COMPONENTS SSL Crypto)
 endif()
 
 if (NOT CURL_EXT_EXTRA_OPTIONS)
@@ -24,7 +24,7 @@ add_dependencies(curl curl_ext)
 set_property(TARGET curl PROPERTY IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/ext/curl/lib/libcurl.a)
 set_property(TARGET curl PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/ext/curl/include/)
 if (NOT APPLE)
-    set_property(TARGET curl PROPERTY INTERFACE_LINK_LIBRARIES ${OPENSSL_LIBRARIES})
+    set_property(TARGET curl PROPERTY INTERFACE_LINK_LIBRARIES OpenSSL::SSL OpenSSL::Crypto)
 endif()
 
 set(CURL_FOUND TRUE)
