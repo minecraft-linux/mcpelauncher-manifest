@@ -76,3 +76,6 @@
 [submodule "mcpelauncher-linker"]
 	path = mcpelauncher-linker
 	url = ../mcpelauncher-linker.git
+[submodule "libjnivm"]
+	path = libjnivm
+	url = https://github.com/ChristopherHX/libjnivm.git

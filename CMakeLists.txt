@@ -123,8 +123,11 @@ add_subdirectory(mcpelauncher-core)
 
 if (BUILD_CLIENT)
     add_subdirectory(android-support-headers)
-    add_subdirectory(fake-jni)
-    add_subdirectory(baron)
+    # add_subdirectory(fake-jni)
+    # add_subdirectory(baron)
+    add_subdirectory(libjnivm)
+    add_library(fake-jni ALIAS jnivm)
+    add_library(baron ALIAS jnivm)
     add_subdirectory(mcpelauncher-client)
 endif()
 
