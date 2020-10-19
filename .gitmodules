@@ -76,3 +76,6 @@
 [submodule "mcpelauncher-linker"]
 	path = mcpelauncher-linker
 	url = ../mcpelauncher-linker.git
+[submodule "mcpelauncher-webview"]
+	path = mcpelauncher-webview
+	url = https://github.com/freundTech/mcpelauncher-webview

@@ -93,6 +93,11 @@ if (BUILD_CLIENT)
     endif()
 endif()
 
+option(BUILD_WEBVIEW "Build webview for xboxlive login" ON)
+if (BUILD_WEBVIEW)
+    add_subdirectory(mcpelauncher-webview)
+endif()
+
 if (APPLE)
     add_subdirectory(osx-elf-header)
     add_subdirectory(epoll-shim)
