@@ -29,11 +29,11 @@ if(${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES 
     set(IS_ARMHF_BUILD TRUE)
 endif()
 
-if(APPLE)
-    set(CMAKE_LIBRARY_ARCHITECTURE "i386-apple-darwin")
-elseif(NOT IS_ARM_BUILD)
-    set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
-endif()
+# if(APPLE)
+#     set(CMAKE_LIBRARY_ARCHITECTURE "i386-apple-darwin")
+# elseif(NOT IS_ARM_BUILD)
+#     set(CMAKE_LIBRARY_ARCHITECTURE "i386-linux-gnu")
+# endif()
 
 set(DEB_OS_NAME "none" CACHE STRING "Specifies the target OS for building the debs (ubuntu-xenial, ubuntu-bionic, ubuntu-disco)")
 mark_as_advanced(DEB_OS_NAME)
