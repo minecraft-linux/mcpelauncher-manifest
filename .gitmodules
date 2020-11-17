@@ -79,3 +79,6 @@
 [submodule "mcpelauncher-webview"]
 	path = mcpelauncher-webview
 	url = https://github.com/freundTech/mcpelauncher-webview
+[submodule "libjnivm"]
+	path = libjnivm
+	url = https://github.com/ChristopherHX/libjnivm.git
