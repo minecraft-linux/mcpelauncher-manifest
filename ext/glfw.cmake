@@ -1,5 +1,10 @@
 include(FetchContent)
 
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+
 FetchContent_Declare(
         glfw3_ext
         URL "https://github.com/minecraft-linux/glfw/archive/master.zip"
