@@ -82,3 +82,6 @@
 [submodule "libjnivm"]
 	path = libjnivm
 	url = https://github.com/ChristopherHX/libjnivm.git
+[submodule "mcpelauncher-errorwindow"]
+	path = mcpelauncher-errorwindow
+	url = https://github.com/minecraft-linux/mcpelauncher-errorwindow.git

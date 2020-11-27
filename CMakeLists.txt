@@ -141,6 +141,7 @@ if (BUILD_CLIENT)
         add_subdirectory(baron)
     endif()
     add_subdirectory(mcpelauncher-client)
+    add_subdirectory(mcpelauncher-errorwindow)
 endif()
 
 install(DIRECTORY ${NATIVES_PATH_LIB_DIR} COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
