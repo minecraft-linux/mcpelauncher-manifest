@@ -4,7 +4,7 @@ on:
 jobs:
   tampered_launcher:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.body, "Minecraft Bedrock.app")
+    if: contains(github.event.issue.body, 'Minecraft Bedrock.app')
     steps:
     - name: Create Response
       uses: peter-evans/create-or-update-comment@v1
