@@ -1,0 +1,26 @@
+on:
+  issues:
+    types: [opened]
+jobs:
+  tampered_launcher:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.body, "Minecraft Bedrock.app")
+    steps:
+    - name: Create Response
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          **I heard of a potenially tampered Launcher from mediafire**
+          You find offical releases from me on github (https://github.com/ChristopherHX/osx-packaging-scripts/releases/tag/ng.dmg).
+          They are still unsigned, but it seems to be reasonable to increase secureity.
+
+          Where do you get that version? It might harm your computer or credentials.
+          _This comment was written by a bot!, because you or the download page has renamed the Launcher from "Minecraft Bedrock Launcher.app" to "Minecraft Bedrock.app"_
+    - uses: christianvuerings/add-labels@v1
+      with:
+        labels: |
+          Tampered Launcher
+          MissingUpdates
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
