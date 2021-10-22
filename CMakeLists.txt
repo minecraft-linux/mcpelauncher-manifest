@@ -65,6 +65,7 @@ else()
     set(NATIVES_PATH_DIR "${CMAKE_SOURCE_DIR}/mcpelauncher-linux-bin")
     set(NATIVES_PATH_LIB_DIR "${NATIVES_PATH_DIR}/lib")
 endif()
+set(MCPELAUNCHER_UPDATES_DIR "${CMAKE_SOURCE_DIR}/mcpelauncher-updates-bin")
 
 option(ENABLE_DEV_PATHS "Enables lookup in source directories for misc files required by the launcher. This should be disabled for package builds." ON)
 if (ENABLE_DEV_PATHS)
@@ -128,7 +129,7 @@ add_subdirectory(minecraft-imported-symbols)
 add_subdirectory(mcpelauncher-common)
 add_subdirectory(mcpelauncher-core)
 
-option(JNI_USE_JNIVM "if off it uses fake-jni + baron or it uses jnivm instead as jni interface" OFF)
+option(JNI_USE_JNIVM "if off it uses fake-jni + baron or it uses jnivm instead as jni interface" ON)
 if (BUILD_CLIENT)
     add_subdirectory(android-support-headers)
     if (JNI_USE_JNIVM)
@@ -143,7 +144,7 @@ if (BUILD_CLIENT)
     add_subdirectory(mcpelauncher-errorwindow)
 endif()
 
-install(DIRECTORY ${NATIVES_PATH_LIB_DIR} COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*"
+install(DIRECTORY ${NATIVES_PATH_LIB_DIR} ${MCPELAUNCHER_UPDATES_DIR} COMPONENT mcpelauncher-bin-libs DESTINATION share/mcpelauncher PATTERN "*" PATTERN ".*" EXCLUDE
         PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
 
 option(MSA_DAEMON_PATH "Additional paths in which the MSA daemon should be looked in. Relative to the application directory." )

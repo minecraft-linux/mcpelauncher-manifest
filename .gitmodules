@@ -52,6 +52,9 @@
 [submodule "mcpelauncher-linux-bin"]
 	path = mcpelauncher-linux-bin
 	url = ../mcpelauncher-linux-bin.git
+[submodule "mcpelauncher-updates-bin"]
+	path = mcpelauncher-updates-bin
+	url = ../mcpelauncher-updates-bin.git
 [submodule "epoll-shim"]
 	path = epoll-shim
 	url = ../epoll-shim.git
