@@ -1,0 +1,34 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: bug
+assignees: ''
+
+---
+
+**Describe the bug**
+A clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+ - OS: [e.g. Linux, macOS]
+ - Version [e.g. v0.3.0-AppImage-x86_64-0.0.677 (build 677)]
+ - Installation Type [e.g. AppImage, flatpak, dmg or built from source]
+
+Not supported is a similar looking app in the snap store.
+
+**Additional context**
+Add any other context about the problem here.
