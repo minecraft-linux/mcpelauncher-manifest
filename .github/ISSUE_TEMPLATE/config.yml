@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Open issues here
+    url: https://github.com/minecraft-linux/mcpelauncher-manifest
+    about: My fork is unmaintained since Summer 2020, please goto the minecraft-linux repository
+  - name: Checkout the wiki
+    url: https://mcpelauncher.readthedocs.io
+    about: You find useful information about this launcher
+  - name: Ask on Discord
+    url: https://discord.gg/TaUNBXr
+    about: You can ask for help here!
