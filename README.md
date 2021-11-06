@@ -1,4 +1,8 @@
 # mcpelauncher-manifest
+# This fork is unmaintained since Summer 2020
+## See https://github.com/minecraft-linux/mcpelauncher-manifest for a version which runs 1.17+ x86, x86_64, armv7 and arm64 instead of only 0.12 - 1.16.10 x86, armv7
+The libhybris library broke with Minecraft 1.16.20 and caused crashs, but the rewritten launcher of minecraft-linux didn't had such problems.
+
 An unstable and dirty fork of the Linux and Mac OS Minecraft Bedrock Edition launcher **client** that supports 1.11+ (incl. most beta builds, 1.0-1.10 cannot be resized after start)
 
 <p align="center">
