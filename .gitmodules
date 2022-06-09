@@ -78,10 +78,10 @@
 	url = ../mcpelauncher-linker.git
 [submodule "mcpelauncher-webview"]
 	path = mcpelauncher-webview
-	url = https://github.com/freundTech/mcpelauncher-webview
+	url = ../mcpelauncher-webview.git
 [submodule "libjnivm"]
 	path = libjnivm
-	url = https://github.com/ChristopherHX/libjnivm.git
+	url = ../../ChristopherHX/libjnivm.git
 [submodule "mcpelauncher-errorwindow"]
 	path = mcpelauncher-errorwindow
-	url = https://github.com/minecraft-linux/mcpelauncher-errorwindow.git
+	url = ../mcpelauncher-errorwindow.git
