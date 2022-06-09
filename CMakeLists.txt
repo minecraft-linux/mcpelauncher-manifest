@@ -56,6 +56,7 @@ endfunction()
 git_commit_hash(${CMAKE_SOURCE_DIR} MANIFEST_GIT_COMMIT_HASH)
 
 option(BUILD_CLIENT "Enables building of the client launcher." ON)
+option(BUILD_UI "Enables building of the client ui requires qt." ON)
 option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
 
 if (APPLE)
@@ -79,7 +80,7 @@ endif()
 include(ext/json.cmake)
 
 option(USE_GAMECONTROLLERDB "Downloads gamecontrollerdb.txt from gabomdq/SDL_GameControllerDB" ON)
-if (USE_GAMECONTROLLERDB)
+if (USE_GAMECONTROLLERDB AND BUILD_CLIENT)
     include(ext/gamepad_mappings.cmake)
 endif()
 
@@ -94,7 +95,7 @@ if (BUILD_CLIENT)
 endif()
 
 option(BUILD_WEBVIEW "Build webview for xboxlive login" ON)
-if (BUILD_WEBVIEW)
+if (BUILD_WEBVIEW AND BUILD_UI)
     add_subdirectory(mcpelauncher-webview)
 endif()
 
@@ -103,16 +104,15 @@ if (APPLE)
     add_subdirectory(epoll-shim)
 endif()
 
-add_subdirectory(logger)
-add_subdirectory(base64)
-add_subdirectory(file-util)
-add_subdirectory(properties-parser)
-add_subdirectory(arg-parser)
-
-add_subdirectory(mcpelauncher-linker)
-add_subdirectory(libc-shim)
-
 if (BUILD_CLIENT)
+    add_subdirectory(logger)
+    add_subdirectory(base64)
+    add_subdirectory(file-util)
+    add_subdirectory(properties-parser)
+    add_subdirectory(arg-parser)
+
+    add_subdirectory(mcpelauncher-linker)
+    add_subdirectory(libc-shim)
     # MSA is only required with the client
     add_subdirectory(simple-ipc)
     add_subdirectory(daemon-utils/client)
@@ -122,11 +122,11 @@ if (BUILD_CLIENT)
     add_subdirectory(game-window)
 
     add_subdirectory(cll-telemetry)
-endif()
 
-add_subdirectory(minecraft-imported-symbols)
-add_subdirectory(mcpelauncher-common)
-add_subdirectory(mcpelauncher-core)
+    add_subdirectory(minecraft-imported-symbols)
+    add_subdirectory(mcpelauncher-common)
+    add_subdirectory(mcpelauncher-core)
+endif()
 
 option(JNI_USE_JNIVM "if off it uses fake-jni + baron or it uses jnivm instead as jni interface" ON)
 if (BUILD_CLIENT)
@@ -140,6 +140,8 @@ if (BUILD_CLIENT)
         add_subdirectory(baron)
     endif()
     add_subdirectory(mcpelauncher-client)
+endif()
+if (BUILD_CLIENT OR BUILD_UI)
     add_subdirectory(mcpelauncher-errorwindow)
 endif()
 
