@@ -1,0 +1,7 @@
+on: pull_request
+name: ci
+jobs:
+ linux:
+    uses: ChristopherHX/linux-packaging-scripts/.github/workflows/main.yml@main
+ macOS:
+    uses: ChristopherHX/osx-packaging-scripts/.github/workflows/main.yml@main
