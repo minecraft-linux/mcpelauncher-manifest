@@ -1,0 +1,14 @@
+on: push
+name: ci
+jobs:
+ linux:
+    uses: ChristopherHX/linux-packaging-scripts/.github/workflows/main.yml@main
+    with:
+      submodule-refs: |-
+        [
+          {
+            "project": "mcpelauncher",
+            "path": "mcpelauncher-linux-bin",
+            "ref": "d8475af2ecaaeb1989ac503c91daa1060257cf8d"
+          }
+        ]
