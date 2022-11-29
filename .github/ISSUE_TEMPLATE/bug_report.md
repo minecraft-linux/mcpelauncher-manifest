@@ -28,7 +28,5 @@ If applicable, add screenshots to help explain your problem.
  - Version [e.g. v0.3.0-AppImage-x86_64-0.0.677 (build 677)]
  - Installation Type [e.g. AppImage, flatpak, dmg or built from source]
 
-Not supported is a similar looking app in the snap store.
-
 **Additional context**
 Add any other context about the problem here.

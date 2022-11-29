@@ -1,23 +1,25 @@
 # mcpelauncher
 
-This project contains an unofficial launcher for the Android version of Minecraft: Bedrock Edition on linux and macOS.
+An unstable unofficial launcher for the Android version of Minecraft: Bedrock Edition on linux and macOS.
 
-Currently this Launcher can open Minecraft 1.13.0 - 1.19.30. Previous Versions of this Launcher were able to run 0.12 - 1.12.1.
+# UI
+
+The User Interface to login, download and manage Versions can be found [here](https://github.com/minecraft-linux/mcpelauncher-ui-manifest)
 
 # System Requirements
-Your Computer must be able to run Android.
 
 Operating System|Architecture|Requirements|Minecraft Versions
 ---|---|---|---
-linux glibc|x86|Intel or Amd CPU with SSSE3 Instruction Set.|-
+linux glibc|x86|Intel or Amd CPU with SSSE3 Instruction Set.|1.13.0 - 1.19.2X
 macOS 10.10 - 10.14|x86|Intel or Amd CPU with SSSE3 Instruction Set.|1.13.0 - 1.16.1X
-linux glibc|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets.|-
+linux glibc|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets.|1.13.0 - 1.19.4X
 macOS 10.10 - latest|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets. M1 Macs can run this Launcher with Rosetta 2|1.13.0 - 1.18.1X, excluding some beta versions
-linux glibc|arm32|armv7 CPU and pulseaudio|-
-linux glibc|arm64|armv8 CPU and pulseaudio|-
+linux glibc|arm32|armv7 CPU and pulseaudio|Broken right now 680d827b4bd2bb7a078d57d4957a20bacdb6ffd5
+linux glibc|arm64|armv8 CPU and pulseaudio|1.13.0 - 1.19.60
 
 
 # Important Minecraft Version specific Bugs
+
 Minecraft Version|Bug Description
 ---|---
 1.13.0 - 1.16.1X|Xbox login doesn't work. It is working in previous Versions of this Launcher.
@@ -29,4 +31,5 @@ Minecraft Version|Bug Description
 1.18.30 - latest|Store and skins not loading, the game prevents you from selecting a custom skin
 
 # Wiki
+
 Please check our wiki https://mcpelauncher.readthedocs.io for information about compiling or installing this launcher.
