@@ -10,11 +10,11 @@ The User Interface to login, download and manage Versions can be found [here](ht
 
 Operating System|Architecture|Requirements|Minecraft Versions
 ---|---|---|---
-linux glibc|x86|Intel or Amd CPU with SSSE3 Instruction Set.|1.13.0 - 1.19.2X
+linux glibc|x86|Intel or Amd CPU with SSSE3 Instruction Set.|1.13.0 - 1.19.60
 macOS 10.10 - 10.14|x86|Intel or Amd CPU with SSSE3 Instruction Set.|1.13.0 - 1.16.1X
-linux glibc|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets.|1.13.0 - 1.19.4X
-macOS 10.10 - latest|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets. M1 Macs can run this Launcher with Rosetta 2|1.13.0 - 1.18.1X, excluding some beta versions
-linux glibc|arm32|armv7 CPU and pulseaudio|Broken right now 680d827b4bd2bb7a078d57d4957a20bacdb6ffd5
+linux glibc|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets.|1.13.0 - 1.19.60
+macOS 10.10 - latest|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets. M1 Macs can run this Launcher with Rosetta 2|1.13.0 - 1.19.60, excluding some beta versions
+linux glibc|arm32|armv7 CPU and pulseaudio|1.13.0 - 1.19.60
 linux glibc|arm64|armv8 CPU and pulseaudio|1.13.0 - 1.19.60
 
 
