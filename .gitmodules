@@ -61,12 +61,6 @@
 [submodule "mcpelauncher-mac-bin"]
 	path = mcpelauncher-mac-bin
 	url = ../mcpelauncher-mac-bin.git
-[submodule "fake-jni"]
-	path = fake-jni
-	url = ../fake-jni.git
-[submodule "baron"]
-	path = baron
-	url = ../baron.git
 [submodule "android-support-headers"]
 	path = android-support-headers
 	url = ../android-support-headers.git
