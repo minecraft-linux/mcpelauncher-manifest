@@ -82,7 +82,7 @@ if (USE_GAMECONTROLLERDB AND BUILD_CLIENT)
     include(ext/gamepad_mappings.cmake)
 endif()
 
-option(USE_SNMALLOC "Use the snmalloc allocator" ON)
+option(USE_SNMALLOC "Use the snmalloc allocator" OFF)
 
 if (BUILD_CLIENT)
     if (USE_SNMALLOC)
