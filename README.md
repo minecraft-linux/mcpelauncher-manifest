@@ -27,7 +27,6 @@ Minecraft Version|Bug Description
 1.16.210 - 1.17.4X|Crafting is broken on x86 and x86_64 based devices
 1.16.210 - 1.17.4X|Textures are off by one on x86 and x86_64 based devices, enable texture patch in profile settings to mitigate this Bug
 1.16.210 - 1.17.4X|World Corruption while next to water
-1.16.210 - latest|Downloading Content from the Minecraft Marketplace times out
 
 # Wiki
 
