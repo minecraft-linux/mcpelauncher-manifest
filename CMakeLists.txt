@@ -70,7 +70,7 @@ if (ENABLE_DEV_PATHS)
     add_definitions(-DDEV_EXTRA_PATHS="${NATIVES_PATH_DIR}:${CMAKE_BINARY_DIR}/gamecontrollerdb")
 endif()
 
-option(USE_OWN_CURL "Builds CURL as an ExternalProject dependency" OFF)
+option(USE_OWN_CURL "Builds CURL as an ExternalProject dependency" ON)
 if (USE_OWN_CURL)
     include(ext/curl.cmake)
 endif()

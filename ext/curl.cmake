@@ -1,13 +1,17 @@
 include(ExternalProject)
 
-find_package(OpenSSL REQUIRED COMPONENTS SSL Crypto)
 
 if (NOT CURL_EXT_EXTRA_OPTIONS)
     set(CURL_EXT_EXTRA_OPTIONS )
 endif()
 
-if (DEFINED OPENSSL_ROOT_DIR)
-    list(APPEND CURL_EXT_EXTRA_OPTIONS "-DOPENSSL_ROOT_DIR=${OPENSSL_ROOT_DIR}")
+if (APPLE)
+    list(APPEND CURL_EXT_EXTRA_OPTIONS "-DCURL_USE_SECTRANSP=ON")
+else()
+    find_package(OpenSSL REQUIRED COMPONENTS SSL Crypto)
+    if (DEFINED OPENSSL_ROOT_DIR)
+        list(APPEND CURL_EXT_EXTRA_OPTIONS "-DOPENSSL_ROOT_DIR=${OPENSSL_ROOT_DIR}")
+    endif()
 endif()
 
 ExternalProject_Add(
@@ -21,7 +25,11 @@ add_library(curl STATIC IMPORTED)
 add_dependencies(curl curl_ext)
 set_property(TARGET curl PROPERTY IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/ext/curl/lib/libcurl.a)
 set_property(TARGET curl PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/ext/curl/include/)
-set_property(TARGET curl PROPERTY INTERFACE_LINK_LIBRARIES OpenSSL::SSL OpenSSL::Crypto)
+if (APPLE)
+    set_property(TARGET curl PROPERTY INTERFACE_LINK_LIBRARIES "-framework SystemConfiguration -framework Security -framework CoreFoundation")
+else()
+    set_property(TARGET curl PROPERTY INTERFACE_LINK_LIBRARIES OpenSSL::SSL OpenSSL::Crypto)
+endif()
 
 set(CURL_FOUND TRUE)
 set(CURL_LIBRARIES curl)
