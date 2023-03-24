@@ -1,6 +1,5 @@
 include(ExternalProject)
 
-
 if (NOT CURL_EXT_EXTRA_OPTIONS)
     set(CURL_EXT_EXTRA_OPTIONS )
 endif()

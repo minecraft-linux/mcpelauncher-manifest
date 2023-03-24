@@ -8,5 +8,4 @@ jobs:
  linux:
     uses: ChristopherHX/linux-packaging-scripts/.github/workflows/main.yml@main
  macOS:
-    uses: ChristopherHX/osx-packaging-scripts/.github/workflows/main.yml@fix-curl-ext-macos
-    secrets: inherit
+    uses: ChristopherHX/osx-packaging-scripts/.github/workflows/main.yml@main
