@@ -9,3 +9,5 @@ jobs:
     uses: ChristopherHX/linux-packaging-scripts/.github/workflows/main.yml@main
  macOS:
     uses: ChristopherHX/osx-packaging-scripts/.github/workflows/main.yml@main
+    with:
+      secrets: inherit
