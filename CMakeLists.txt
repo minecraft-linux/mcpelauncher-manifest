@@ -120,6 +120,7 @@ if (BUILD_CLIENT)
     # MSA is only required with the client
     add_subdirectory(simple-ipc)
     add_subdirectory(daemon-utils/client)
+    add_subdirectory(daemon-utils/server)
     add_subdirectory(msa-daemon-client)
 
     add_subdirectory(file-picker)
