@@ -1,5 +1,6 @@
 name: ci
 on:
+  push:
   workflow_dispatch:
   schedule:
   - cron:  '30 2 * * *'
@@ -20,6 +21,7 @@ jobs:
         submodules: recursive
     - name: Update branches
       run: |
+        set -x
         # from https://github.com/orgs/community/discussions/26560
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config user.name "github-actions[bot]"
@@ -34,7 +36,7 @@ jobs:
             git -C "$submodule" pull --ff-only origin HEAD
           done
           git add . && git commit -m "Branch Sync" || echo "Nothing to do" && exit 0
-          git push -f "HEAD:refs/heads/branch-sync-$dir"
+          git push origin "HEAD:refs/heads/branch-sync-$dir" -f 
           echo "$dir=$(git rev-parse HEAD)" >> $GITHUB_ENV
           popd
         done
