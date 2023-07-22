@@ -64,11 +64,11 @@ jobs:
     with:
       shas: |-
         {
-          "": ${{ tojson(needs.prepare.outputs.mcpelauncher-ng) }}
+          "": ${{ tojson(needs.prepare.outputs.mcpelauncher-ng) }},
           "qt6": ${{ tojson(needs.prepare.outputs.mcpelauncher-qt6) }}
         }
   deploy:
-    if: needs.prepare.outputs.sync == 'true'
+    if: needs.prepare.outputs.sync == 'true' && !failure() && !cancelled()
     needs:
     - prepare
     - linux-AppImage
