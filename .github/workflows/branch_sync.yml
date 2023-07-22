@@ -1,6 +1,5 @@
 name: ci
 on:
-  push:
   workflow_dispatch:
   schedule:
   - cron:  '30 2 * * *'
@@ -22,15 +21,15 @@ jobs:
     - name: Update branches
       run: |
         set -x
-        # from https://github.com/orgs/community/discussions/26560
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config user.name "github-actions[bot]"
         dirs=( "mcpelauncher-ng" "mcpelauncher-qt6" )
         common_submodules=( "logger" "base64" "file-util" "properties-parser" "simple-ipc" "daemon-utils" "msa-daemon-client" "eglut" "linux-gamepad" "game-window" "file-picker" "cll-telemetry" "minecraft-imported-symbols" "mcpelauncher-common" "mcpelauncher-core" "mcpelauncher-client" "arg-parser" "mcpelauncher-linux-bin" "epoll-shim" "osx-elf-header" "mcpelauncher-mac-bin" "android-support-headers" "libc-shim" "mcpelauncher-linker" "libjnivm" )
         # ui_submodules=("mcpelauncher-webview" "mcpelauncher-errorwindow")
         for dir in "${dirs[@]}"
         do
           pushd "$dir"
+          # from https://github.com/orgs/community/discussions/26560
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
           for submodule in "${common_submodules[@]}"
           do
             git -C "$submodule" pull --ff-only origin HEAD
@@ -86,8 +85,10 @@ jobs:
     - name: Update branches
       run: |
         # from https://github.com/orgs/community/discussions/26560
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config user.name "github-actions[bot]"
+        git -C mcpelauncher-ng config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git -C mcpelauncher-ng config user.name "github-actions[bot]"
+        git -C mcpelauncher-qt6 config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git -C mcpelauncher-qt6 config user.name "github-actions[bot]"
         git -C mcpelauncher-ng fetch origin ${{ needs.prepare.outputs.mcpelauncher-ng }}
         git -C mcpelauncher-ng push origin ${{ needs.prepare.outputs.mcpelauncher-ng }}:ng
         git -C mcpelauncher-qt6 fetch origin ${{ needs.prepare.outputs.mcpelauncher-qt6 }}
