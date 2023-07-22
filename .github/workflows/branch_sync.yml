@@ -12,12 +12,12 @@ jobs:
       with:
         ref: ng
         path: mcpelauncher-ng
-        submodules: recursive
+        submodules: true
     - uses: actions/checkout@v3
       with:
         ref: qt6
         path: mcpelauncher-qt6
-        submodules: recursive
+        submodules: true
     - name: Update branches
       run: |
         set -x
@@ -32,7 +32,8 @@ jobs:
           git config user.name "github-actions[bot]"
           for submodule in "${common_submodules[@]}"
           do
-            git -C "$submodule" pull --ff-only origin HEAD
+            git -C "$submodule" fetch origin HEAD
+            git -C "$submodule" reset --hard FETCH_HEAD
           done
           git add . && git commit -m "Branch Sync" || echo "Nothing to do" && exit 0
           git push origin "HEAD:refs/heads/branch-sync-$dir" -f 
