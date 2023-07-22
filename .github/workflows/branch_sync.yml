@@ -35,11 +35,12 @@ jobs:
             git -C "$submodule" fetch origin HEAD
             git -C "$submodule" reset --hard FETCH_HEAD
           done
-          git add . && git commit -m "Branch Sync" || echo "Nothing to do" && exit 0
+          git add . && git commit -m "Branch Sync" || (echo "Nothing to do" && exit 0)
           git push origin "HEAD:refs/heads/branch-sync-$dir" -f 
           echo "$dir=$(git rev-parse HEAD)" >> $GITHUB_ENV
           popd
         done
+      shell: bash
     outputs:
       mcpelauncher-ng: ${{ env.mcpelauncher-ng }}
       mcpelauncher-qt6: ${{ env.mcpelauncher-qt6 }}
@@ -94,3 +95,4 @@ jobs:
         git -C mcpelauncher-ng push origin ${{ needs.prepare.outputs.mcpelauncher-ng }}:ng
         git -C mcpelauncher-qt6 fetch origin ${{ needs.prepare.outputs.mcpelauncher-qt6 }}
         git -C mcpelauncher-qt6 push origin ${{ needs.prepare.outputs.mcpelauncher-qt6 }}:qt6
+      shell: bash
