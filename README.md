@@ -28,6 +28,7 @@ Minecraft Version|Bug Description
 1.16.210 - 1.17.4X|Textures are off by one on x86 and x86_64 based devices, enable texture patch in profile settings to mitigate this Bug
 1.16.210 - 1.17.4X|World Corruption while next to water
 1.18.30 - latest|The armv7 port might not work correctly
+1.19.50 - latest|You cannot sprint while diagonal strafing on Intel cpu (see [MCPE-170810](https://bugs.mojang.com/browse/MCPE-170810))
 all|You are unable to receive Xbox live game invites
 all|You may be unable to join worlds hosted by this laucher using Xbox live friends joining
 
