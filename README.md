@@ -35,3 +35,9 @@ all|You may be unable to join worlds hosted by this laucher using Xbox live frie
 # Wiki
 
 Please check our wiki https://mcpelauncher.readthedocs.io for information about compiling or installing this launcher.
+
+# Show Your Support
+
+If you like this project, please consider donating to the developers.
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://example.com)
