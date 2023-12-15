@@ -30,7 +30,7 @@ Minecraft Version|Bug Description
 1.18.30 - latest|The armv7 port might not work correctly
 1.19.50 - latest|You cannot sprint while diagonal strafing on Intel cpu (see [MCPE-170810](https://bugs.mojang.com/browse/MCPE-170810))
 all|You are unable to receive Xbox live game invites
-all|You may be unable to join worlds hosted by this laucher using Xbox live friends joining
+all|You may be unable to join worlds hosted by this launcher using Xbox live friends joining
 
 # Wiki
 
