@@ -51,12 +51,14 @@ jobs:
     uses: ChristopherHX/linux-packaging-scripts/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
+      update-information: https://github.com/minecraft-linux/mcpelauncher-manifest/releases/download/nightly
   macOS:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
     uses: ChristopherHX/osx-packaging-scripts/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
+    secrets: inherit
   linux-pkg:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
@@ -98,3 +100,37 @@ jobs:
         git -C mcpelauncher-qt6 fetch origin ${{ needs.prepare.outputs.mcpelauncher-qt6 }}
         git -C mcpelauncher-qt6 push origin ${{ needs.prepare.outputs.mcpelauncher-qt6 }}:qt6
       shell: bash
+  publish:
+    needs: deploy
+    if: needs.prepare.outputs.sync == 'true' && !failure() && !cancelled()
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Vars
+      id: setup-vars
+      uses: actions/github-script@v6
+      with:
+        script: |
+          core.setOutput("owner", context.repo.owner)
+          core.setOutput("repo", context.repo.repo)
+    - name: Download Everything
+      uses: actions/download-artifact@v4
+      with:
+        path: output
+        pattern: (appimage|dmg)-*
+        merge-multiple: true
+    - name: Download ghr
+      run: |
+        curl -L https://github.com/tcnksm/ghr/releases/download/v0.13.0/ghr_v0.13.0_linux_amd64.tar.gz --output ghr.tar.gz
+        tar -xf ghr.tar.gz
+    - name: Upload Nightly
+      run: |
+        ./ghr*/ghr -t ${{ secrets.GITHUB_TOKEN }} -u ${{ steps.setup-vars.outputs.owner }} -r ${{ steps.setup-vars.outputs.repo }} -b "$LAUNCHER_RELEASE_DESCRIPTION" -replace "nightly" output/
+      env:
+        LAUNCHER_RELEASE_DESCRIPTION: |
+          This release appends assets every day, the one with the highest number is the latest one.
+
+          Please use releases from https://mcpelauncher.readthedocs.io/.
+
+          Builds from this tag are very very unstable, but new changes lands here earlier.

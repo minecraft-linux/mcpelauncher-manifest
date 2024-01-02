@@ -35,3 +35,13 @@ all|You may be unable to join worlds hosted by this launcher using Xbox live fri
 # Wiki
 
 Please check our wiki https://mcpelauncher.readthedocs.io for information about compiling or installing this launcher.
+
+# Nightly Prebuilds
+
+## AppImages and DMG Files
+
+https://github.com/minecraft-linux/mcpelauncher-manifest/releases/tag/nightly
+
+## Debian, Ubuntu and Fedora Packages
+
+https://github.com/minecraft-linux/pkg
