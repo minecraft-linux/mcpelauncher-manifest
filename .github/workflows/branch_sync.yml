@@ -53,7 +53,7 @@ jobs:
       mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
       update-information: https://github.com/minecraft-linux/mcpelauncher-manifest/releases/download/nightly
       # We use a single tag in this distribution matching the location of the zsync file
-      tag-name: -
+      tag-name: "-"
   macOS:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
