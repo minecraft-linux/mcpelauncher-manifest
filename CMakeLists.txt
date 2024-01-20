@@ -90,6 +90,7 @@ if (BUILD_CLIENT)
     endif()
 
     include(game-window/BuildSettings.cmake)
+    set(GAMEWINDOW_SYSTEM "SDL3" CACHE STRING "" FORCE)
     if (GAMEWINDOW_SYSTEM STREQUAL "EGLUT")
         add_subdirectory(eglut)
         add_subdirectory(linux-gamepad)
