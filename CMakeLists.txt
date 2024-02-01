@@ -95,6 +95,8 @@ if (BUILD_CLIENT)
         add_subdirectory(linux-gamepad)
     elseif (GAMEWINDOW_SYSTEM STREQUAL "GLFW")
         include(ext/glfw.cmake)
+    elseif (GAMEWINDOW_SYSTEM STREQUAL "SDL3")
+        include(ext/sdl3.cmake)
     endif()
 endif()
 

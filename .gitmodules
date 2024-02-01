@@ -79,3 +79,6 @@
 [submodule "mcpelauncher-errorwindow"]
 	path = mcpelauncher-errorwindow
 	url = https://github.com/minecraft-linux/mcpelauncher-errorwindow.git
+[submodule "sdl3"]
+	path = sdl3
+	url = https://github.com/libsdl-org/SDL
