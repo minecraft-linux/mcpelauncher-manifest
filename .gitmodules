@@ -82,3 +82,6 @@
 [submodule "sdl3"]
 	path = sdl3
 	url = https://github.com/libsdl-org/SDL
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/ocornut/imgui
