@@ -99,6 +99,7 @@ jobs:
         git -C mcpelauncher-qt6 config user.name "github-actions[bot]"
         git -C mcpelauncher-ng fetch origin ${{ needs.prepare.outputs.mcpelauncher-ng }}
         git -C mcpelauncher-ng push origin ${{ needs.prepare.outputs.mcpelauncher-ng }}:ng
+        git -C mcpelauncher-ng push origin ${{ needs.prepare.outputs.mcpelauncher-ng }}:refs/tags/nightly -f
         git -C mcpelauncher-qt6 fetch origin ${{ needs.prepare.outputs.mcpelauncher-qt6 }}
         git -C mcpelauncher-qt6 push origin ${{ needs.prepare.outputs.mcpelauncher-qt6 }}:qt6
       shell: bash
@@ -107,6 +108,15 @@ jobs:
     if: needs.prepare.outputs.sync == 'true' && !failure() && !cancelled()
     permissions: write-all
     runs-on: ubuntu-latest
+    env:
+      LAUNCHER_RELEASE_DESCRIPTION: |
+        This release appends assets every day, the one with the highest number is the latest one.
+
+        Please use releases from https://mcpelauncher.readthedocs.io/.
+
+        Builds from this tag are very very unstable, but new changes lands here earlier.
+
+        **The macOS binaries provided here don't support the builtin updater, you risk falling behind updates while using a nightly**
     steps:
     - uses: actions/checkout@v3
     - name: Setup Vars
@@ -129,10 +139,14 @@ jobs:
     - name: Upload Nightly
       run: |
         ./ghr*/ghr -t ${{ secrets.GITHUB_TOKEN }} -u ${{ steps.setup-vars.outputs.owner }} -r ${{ steps.setup-vars.outputs.repo }} -b "$LAUNCHER_RELEASE_DESCRIPTION" -replace "nightly" output/
+    - name: Update Quick Links
+      run: |
+        for file in *; do
+          LAUNCHER_RELEASE_DESCRIPTION="$LAUNCHER_RELEASE_DESCRIPTION- [$file](${{ github.server_url }}/${{ steps.setup-vars.outputs.owner }}/${{ steps.setup-vars.outputs.repo }}/releases/download/nightly/$file)
+          "
+        done
+        gh release edit nightly --notes "$LAUNCHER_RELEASE_DESCRIPTION"
+      working-directory: output
       env:
-        LAUNCHER_RELEASE_DESCRIPTION: |
-          This release appends assets every day, the one with the highest number is the latest one.
-
-          Please use releases from https://mcpelauncher.readthedocs.io/.
-
-          Builds from this tag are very very unstable, but new changes lands here earlier.
+        GH_TOKEN: ${{ github.token }}
+      continue-on-error: true
