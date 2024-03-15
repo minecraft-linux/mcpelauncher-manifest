@@ -143,7 +143,7 @@ jobs:
       run: |
         for file in *; do
           LAUNCHER_RELEASE_DESCRIPTION="$LAUNCHER_RELEASE_DESCRIPTION- [$file](${{ github.server_url }}/${{ steps.setup-vars.outputs.owner }}/${{ steps.setup-vars.outputs.repo }}/releases/download/nightly/$file)
-          "
+        "
         done
         gh release edit nightly --notes "$LAUNCHER_RELEASE_DESCRIPTION"
       working-directory: output
