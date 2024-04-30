@@ -48,7 +48,7 @@ jobs:
   linux-AppImage:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
-    uses: ChristopherHX/linux-packaging-scripts/.github/workflows/main.yml@main
+    uses: minecraft-linux/appimage-builder/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
       update-information: https://github.com/minecraft-linux/mcpelauncher-manifest/releases/download/nightly
@@ -57,7 +57,7 @@ jobs:
   macOS:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
-    uses: ChristopherHX/osx-packaging-scripts/.github/workflows/main.yml@main
+    uses: minecraft-linux/macos-builder/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
     secrets: inherit
