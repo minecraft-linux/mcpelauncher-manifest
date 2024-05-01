@@ -6,10 +6,10 @@ on:
   pull_request:
 jobs:
  linux:
-    uses: ChristopherHX/linux-packaging-scripts/.github/workflows/main.yml@main
+    uses: minecraft-linux/appimage-builder/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ github.sha }}
  macOS:
-    uses: ChristopherHX/osx-packaging-scripts/.github/workflows/main.yml@main
+    uses: minecraft-linux/macos-builder/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ github.sha }}
