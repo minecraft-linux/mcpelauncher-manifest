@@ -51,6 +51,7 @@ jobs:
     uses: minecraft-linux/appimage-builder/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
+      mcpelauncher-qt6-ref: ${{ needs.prepare.outputs.mcpelauncher-qt6 }}
       update-information: https://github.com/minecraft-linux/mcpelauncher-manifest/releases/download/nightly
       # We use a single tag in this distribution matching the location of the zsync file
       tag-name: "-"
@@ -60,12 +61,13 @@ jobs:
     uses: minecraft-linux/appimage-builder/.github/workflows/main.yml@main
     with:
       mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
+      mcpelauncher-qt6-ref: ${{ needs.prepare.outputs.mcpelauncher-qt6 }}
       update-information: https://github.com/minecraft-linux/mcpelauncher-manifest/releases/download/nightly
       # We use a single tag in this distribution matching the location of the zsync file
       tag-name: "-"
       suffix: "-sdl3"
       appImageFlags: |-
-        -l "-DGAMEWINDOW_SYSTEM=SDL3"
+        -l -DGAMEWINDOW_SYSTEM=SDL3 -l -DSDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS=1
   macOS:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
