@@ -22,7 +22,7 @@ jobs:
       run: |
         set -x
         dirs=( "mcpelauncher-ng" "mcpelauncher-qt6" )
-        common_submodules=( "logger" "base64" "file-util" "properties-parser" "simple-ipc" "daemon-utils" "msa-daemon-client" "eglut" "linux-gamepad" "game-window" "file-picker" "cll-telemetry" "minecraft-imported-symbols" "mcpelauncher-common" "mcpelauncher-core" "mcpelauncher-client" "arg-parser" "mcpelauncher-linux-bin" "epoll-shim" "osx-elf-header" "mcpelauncher-mac-bin" "android-support-headers" "libc-shim" "mcpelauncher-linker" "libjnivm" "sdl3" )
+        common_submodules=( "logger" "base64" "file-util" "properties-parser" "simple-ipc" "daemon-utils" "msa-daemon-client" "eglut" "linux-gamepad" "game-window" "file-picker" "cll-telemetry" "minecraft-imported-symbols" "mcpelauncher-common" "mcpelauncher-core" "mcpelauncher-client" "arg-parser" "mcpelauncher-linux-bin" "epoll-shim" "osx-elf-header" "mcpelauncher-mac-bin" "android-support-headers" "libc-shim" "mcpelauncher-linker" "libjnivm" "sdl3" "imgui" )
         # ui_submodules=("mcpelauncher-webview" "mcpelauncher-errorwindow")
         for dir in "${dirs[@]}"
         do
@@ -65,7 +65,7 @@ jobs:
       tag-name: "-"
       suffix: "-sdl3"
       appImageFlags: |-
-        -l "-DCMAKE_GAMEWINDOW_SYSTEM=SDL3"
+        -l "-DGAMEWINDOW_SYSTEM=SDL3"
   macOS:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
