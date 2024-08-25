@@ -44,7 +44,8 @@ all|You may be unable to join worlds hosted by this launcher using Xbox live fri
 
 # Wiki
 
-Please check our wiki https://mcpelauncher.readthedocs.io for information about compiling or installing this launcher.
+Please check our wiki https://minecraft-linux.github.io for information about compiling or installing this launcher.
+The old wiki of readthedocs is obsolete.
 
 # Nightly Prebuilds
 
