@@ -91,6 +91,7 @@ if (BUILD_CLIENT)
     endif()
 
     include(game-window/BuildSettings.cmake)
+    set(GAMEWINDOW_SYSTEM "SDL3" CACHE STRING "" FORCE)
     if (USE_SDL3_AUDIO OR GAMEWINDOW_SYSTEM STREQUAL "SDL3")
         if(NOT GAMEWINDOW_SYSTEM STREQUAL "SDL3")
             set(SDL_WAYLAND OFF CACHE BOOL "" FORCE)

@@ -7,5 +7,9 @@ on:
 jobs:
  linux:
     uses: minecraft-linux/appimage-builder/.github/workflows/main.yml@main
+    with:
+      mcpelauncher-ref: ${{ github.sha }}
  macOS:
     uses: minecraft-linux/macos-builder/.github/workflows/main.yml@main
+    with:
+      mcpelauncher-ref: ${{ github.sha }}
