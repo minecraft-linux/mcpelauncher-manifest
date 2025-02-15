@@ -1,6 +1,11 @@
 name: branch sync
 on:
   workflow_dispatch:
+    inputs:
+      UPDATE_IMGUI:
+        type: string
+      UPDATE_SDL:
+        type: string
   schedule:
   - cron:  '30 2 * * *'
 jobs:
@@ -22,7 +27,7 @@ jobs:
       run: |
         set -x
         dirs=( "mcpelauncher-ng" "mcpelauncher-qt6" )
-        common_submodules=( "logger" "base64" "file-util" "properties-parser" "simple-ipc" "daemon-utils" "msa-daemon-client" "eglut" "linux-gamepad" "game-window" "file-picker" "cll-telemetry" "minecraft-imported-symbols" "mcpelauncher-common" "mcpelauncher-core" "mcpelauncher-client" "arg-parser" "mcpelauncher-linux-bin" "epoll-shim" "osx-elf-header" "mcpelauncher-mac-bin" "android-support-headers" "libc-shim" "mcpelauncher-linker" "libjnivm" "sdl3" "imgui" )
+        common_submodules=( "logger" "base64" "file-util" "properties-parser" "simple-ipc" "daemon-utils" "msa-daemon-client" "eglut" "linux-gamepad" "game-window" "file-picker" "cll-telemetry" "minecraft-imported-symbols" "mcpelauncher-common" "mcpelauncher-core" "mcpelauncher-client" "arg-parser" "mcpelauncher-linux-bin" "epoll-shim" "osx-elf-header" "mcpelauncher-mac-bin" "android-support-headers" "libc-shim" "mcpelauncher-linker" "libjnivm" ${{ (inputs.UPDATE_SDL || vars.UPDATE_SDL) == '1' && '"sdl3"' || '' }} ${{ (inputs.UPDATE_IMGUI || vars.UPDATE_IMGUI) == '1' && '"imgui"' || '' }})
         # ui_submodules=("mcpelauncher-webview" "mcpelauncher-errorwindow")
         for dir in "${dirs[@]}"
         do
@@ -128,11 +133,13 @@ jobs:
       LAUNCHER_RELEASE_DESCRIPTION: |
         This release appends assets every day, the one with the highest number is the latest one.
 
-        Please use releases from https://mcpelauncher.readthedocs.io/.
+        Please use releases from [minecraft-linux.github.io](https://minecraft-linux.github.io/)
 
         Builds from this tag are very very unstable, but new changes lands here earlier.
 
         **The macOS binaries provided here don't support the builtin updater, you risk falling behind updates while using a nightly**
+
+        AppImages are deprecated due to organized piracy
     steps:
     - uses: actions/checkout@v3
     - name: Setup Vars
@@ -157,9 +164,14 @@ jobs:
         ./ghr*/ghr -t ${{ secrets.GITHUB_TOKEN }} -u ${{ steps.setup-vars.outputs.owner }} -r ${{ steps.setup-vars.outputs.repo }} -b "$LAUNCHER_RELEASE_DESCRIPTION" -replace "nightly" output/
     - name: Update Quick Links
       run: |
-        for file in *; do
-          LAUNCHER_RELEASE_DESCRIPTION="$LAUNCHER_RELEASE_DESCRIPTION- [$file](${{ github.server_url }}/${{ steps.setup-vars.outputs.owner }}/${{ steps.setup-vars.outputs.repo }}/releases/download/nightly/$file)
+        LAUNCHER_RELEASE_DESCRIPTION="${LAUNCHER_RELEASE_DESCRIPTION}Last Updated on $(date)
         "
+        for file in *; do
+          if [[ "$file" =~ \.AppImage$ && "$file" =~ \.dmg$ ]]
+          then
+            LAUNCHER_RELEASE_DESCRIPTION="$LAUNCHER_RELEASE_DESCRIPTION- [$file](${{ github.server_url }}/${{ steps.setup-vars.outputs.owner }}/${{ steps.setup-vars.outputs.repo }}/releases/download/nightly/$file)
+        "
+          fi
         done
         gh release edit nightly --notes "$LAUNCHER_RELEASE_DESCRIPTION"
       working-directory: output
