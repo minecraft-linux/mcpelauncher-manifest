@@ -1,7 +1,7 @@
 blank_issues_enabled: true
 contact_links:
   - name: Checkout the wiki
-    url: https://mcpelauncher.readthedocs.io
+    url: https://minecraft-linux.github.io
     about: You find useful information about this launcher
   - name: Ask on Discord
     url: https://discord.gg/TaUNBXr

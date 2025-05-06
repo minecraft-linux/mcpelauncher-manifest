@@ -8,19 +8,22 @@ The User Interface to login, download and manage Versions can be found [here](ht
 
 # System Requirements
 
+> [!WARNING]
+> Once the new OpenGL ES 3.1 system requirement for "Vibrant Visuals" aka "Deferred Technical Preview" of 31. March 2025 no longer allow the game to start using classic "Fancy" Graphics on OpenGL ES 3.0 the **macOS port Minecraft updates are going to be on hold**
+
 Operating System|Architecture|Requirements|Minecraft Versions
 ---|---|---|---
 linux glibc|x86|Intel or Amd CPU with SSSE3 Instruction Set and OpenGL ES 2.0 or newer.|1.13.0 - 1.20.20
-linux glibc|x86|Intel or Amd CPU with SSSE3 Instruction Set and OpenGL ES 3.0 or newer.|1.13.0 - 1.20.51
+linux glibc|x86|Intel or Amd CPU with SSSE3 Instruction Set and OpenGL ES 3.0 or newer.|1.13.0 - 1.21.73
 macOS 10.10 - 10.14|x86|Intel or Amd CPU with SSSE3 Instruction Set.|1.13.0 - 1.16.1X
 linux glibc|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2,  POPCNT Instruction Sets and OpenGL ES 2.0 or newer.|1.13.0 - 1.20.20
-linux glibc|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2, POPCNT Instruction Sets and OpenGL ES 3.0 or newer.|1.13.0 - 1.20.51
-macOS 10.10 - latest|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets. Rosetta 2 worked in macOS 11 and 12, but no longer in macOS 13|1.13.0 - 1.20.51
+linux glibc|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2, POPCNT Instruction Sets and OpenGL ES 3.0 or newer.|1.13.0 - 1.21.73
+macOS 10.10 - latest|x86_64|Intel or Amd CPU with SSSE3, SSE4.1, SSE4.2 and POPCNT Instruction Sets. Rosetta 2 worked in macOS 11 and 12, but no longer in macOS 13|1.13.0 - 1.21.73
 linux glibc|arm32|armv7 CPU, pulseaudio and OpenGL ES 2.0 or newer|1.13.0 - 1.18.10
-linux glibc|arm64|armv7 CPU, pulseaudio and OpenGL ES 3.0 or newer|1.13.0 - 1.20.51
+linux glibc|arm64|armv7 CPU, pulseaudio and OpenGL ES 3.0 or newer|1.13.0 - 1.21.73
 linux glibc|arm64|armv8 CPU, pulseaudio and OpenGL ES 2.0 or newer|1.13.0 - 1.20.20
-linux glibc|arm64|armv8 CPU, pulseaudio and OpenGL ES 3.0 or newer|1.13.0 - 1.20.51
-macOS 11.0 - latest|arm64|apple m series CPU (Experimental, modding limitations)|1.19.70 - 1.20.51
+linux glibc|arm64|armv8 CPU, pulseaudio and OpenGL ES 3.0 or newer|1.13.0 - 1.21.73
+macOS 11.0 - latest|arm64|apple m series CPU (Experimental, modding limitations)|1.19.70 - 1.21.73
 
 ## Versions 1.20.30+ will not have hardware rendering on older hardware (GLES 3.0 is now required)
 
@@ -49,10 +52,6 @@ The old wiki of readthedocs is obsolete.
 
 # Nightly Prebuilds
 
-## AppImages and DMG Files
-
-https://github.com/minecraft-linux/mcpelauncher-manifest/releases/tag/nightly
-
-## Debian, Ubuntu and Fedora Packages
-
-https://github.com/minecraft-linux/pkg
+[AppImage (Deprecated) and DMG Files](https://github.com/minecraft-linux/mcpelauncher-manifest/releases/tag/nightly)
+[Debian, Ubuntu and Fedora Packages (ca. 1-24h delay)](https://github.com/minecraft-linux/pkg?tab=readme-ov-file#nightly)
+[flatpak install flathub-beta io.mrarm.mcpelauncher (ca. 1-24h delay)](https://discourse.flathub.org/t/how-to-use-flathub-beta/2111)

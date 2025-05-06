@@ -50,16 +50,6 @@ jobs:
       mcpelauncher-ng: ${{ env.mcpelauncher-ng }}
       mcpelauncher-qt6: ${{ env.mcpelauncher-qt6 }}
       sync: ${{ env.mcpelauncher-ng && env.mcpelauncher-qt6 && 'true' || 'false' }}
-  linux-AppImage:
-    if: needs.prepare.outputs.sync == 'true'
-    needs: prepare
-    uses: minecraft-linux/appimage-builder/.github/workflows/main.yml@main
-    with:
-      mcpelauncher-ref: ${{ needs.prepare.outputs.mcpelauncher-ng }}
-      mcpelauncher-qt6-ref: ${{ needs.prepare.outputs.mcpelauncher-qt6 }}
-      update-information: https://github.com/minecraft-linux/mcpelauncher-manifest/releases/download/nightly
-      # We use a single tag in this distribution matching the location of the zsync file
-      tag-name: "-"
   linux-AppImage-sdl3:
     if: needs.prepare.outputs.sync == 'true'
     needs: prepare
@@ -93,10 +83,9 @@ jobs:
           }
         }
   deploy:
-    if: needs.prepare.outputs.sync == 'true' && !failure('macOS', 'linux-pkg') && !cancelled()
+    if: needs.prepare.outputs.sync == 'true' && needs.macOS.result == 'success' && needs.linux-pkg.result == 'success' && !cancelled()
     needs:
     - prepare
-    - linux-AppImage
     - linux-AppImage-sdl3
     - macOS
     - linux-pkg
@@ -126,7 +115,7 @@ jobs:
   publish:
     needs: deploy
     # this should also run if linux packages fail, since we don't upload those anyway
-    if: needs.prepare.outputs.sync == 'true' && !failure('macOS') && !cancelled()
+    if: needs.prepare.outputs.sync == 'true' && needs.macOS.result == 'success' && !cancelled()
     permissions: write-all
     runs-on: ubuntu-latest
     env:
@@ -167,7 +156,7 @@ jobs:
         LAUNCHER_RELEASE_DESCRIPTION="${LAUNCHER_RELEASE_DESCRIPTION}Last Updated on $(date)
         "
         for file in *; do
-          if [[ "$file" =~ \.AppImage$ && "$file" =~ \.dmg$ ]]
+          if [[ "$file" =~ \.AppImage$ ]] || [[ "$file" =~ \.dmg$ ]]
           then
             LAUNCHER_RELEASE_DESCRIPTION="$LAUNCHER_RELEASE_DESCRIPTION- [$file](${{ github.server_url }}/${{ steps.setup-vars.outputs.owner }}/${{ steps.setup-vars.outputs.repo }}/releases/download/nightly/$file)
         "
