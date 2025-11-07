@@ -85,3 +85,9 @@
 [submodule "imgui"]
 	path = imgui
 	url = https://github.com/ocornut/imgui
+[submodule "axml-parser"]
+	path = axml-parser
+	url = https://github.com/MCMrARM/axml-parser
+[submodule "mcpelauncher-apkinfo"]
+	path = mcpelauncher-apkinfo
+	url = https://github.com/minecraft-linux/mcpelauncher-apkinfo
