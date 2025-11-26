@@ -1,0 +1,200 @@
+diff --git a/src/common.cpp b/src/common.cpp
+--- a/src/common.cpp
++++ b/src/common.cpp
+@@ -1,6 +1,9 @@
+ #include <shim/shimmed_symbols.h>
+ #include <cstdlib>
+ #include <cstdio>
++#include <cstring>
++#include <map>
++#include <string>
+
+ // ... existing includes ...
+
++// ============================================================================
++// SYSTEM PROPERTY IMPLEMENTATION FOR MINECRAFT 1.21.100+
++// Required by libpairipcore.so (Google's anti-piracy library)
++// ============================================================================
++
++#define PROP_NAME_MAX 32
++#define PROP_VALUE_MAX 92
++
++// Fake Android system properties - enough to satisfy pairipcore
++static const std::map<std::string, std::string> fake_properties = {
++    // Build information
++    {"ro.build.version.sdk", "30"},
++    {"ro.build.version.release", "11"},
++    {"ro.build.type", "user"},
++    {"ro.build.tags", "release-keys"},
++    {"ro.build.fingerprint", "google/generic_x86_64/generic_x86_64:11/RSR1.210210.001/7094531:user/release-keys"},
++    {"ro.build.display.id", "RSR1.210210.001"},
++    {"ro.build.id", "RSR1.210210.001"},
++
++    // Product information
++    {"ro.product.cpu.abi", "x86_64"},
++    {"ro.product.cpu.abilist", "x86_64,x86"},
++    {"ro.product.cpu.abilist64", "x86_64"},
++    {"ro.product.cpu.abilist32", "x86"},
++    {"ro.product.model", "Linux Desktop"},
++    {"ro.product.brand", "generic"},
++    {"ro.product.device", "generic_x86_64"},
++    {"ro.product.name", "sdk_gphone_x86_64"},
++    {"ro.product.manufacturer", "Google"},
++    {"ro.product.board", "generic_x86_64"},
++
++    // Hardware information
++    {"ro.hardware", "ranchu"},
++    {"ro.board.platform", "generic"},
++    {"ro.arch", "x86_64"},
++
++    // Security/bootloader state (appear as legitimate device)
++    {"ro.boot.verifiedbootstate", "green"},
++    {"ro.boot.flash.locked", "1"},
++    {"ro.boot.vbmeta.device_state", "locked"},
++    {"ro.secure", "1"},
++    {"ro.debuggable", "0"},
++    {"ro.adb.secure", "1"},
++
++    // System properties
++    {"ro.sys.sdcardfs", "true"},
++    {"persist.sys.language", "en"},
++    {"persist.sys.country", "US"},
++    {"persist.sys.timezone", "UTC"},
++
++    // Network
++    {"gsm.version.baseband", "1.0"},
++    {"gsm.current.phone-type", "1"},
++
++    // Dalvik/ART
++    {"dalvik.vm.heapsize", "512m"},
++    {"dalvik.vm.heapgrowthlimit", "256m"},
++
++    // Feature flags that pairipcore might check
++    {"ro.config.low_ram", "false"},
++    {"ro.config.alarm_alert", "Alarm_Classic.ogg"},
++};
++
++// Property info structure (simplified)
++struct prop_info {
++    char name[PROP_NAME_MAX];
++    char value[PROP_VALUE_MAX];
++    uint32_t serial;
++};
++
++// Global property area (simplified - just marks as available)
++static void* __system_property_area__ = (void*)1;
++
++// Find a property by name
++extern "C" const prop_info* __system_property_find(const char* name) {
++    if (!name) return nullptr;
++
++    auto it = fake_properties.find(name);
++    if (it != fake_properties.end()) {
++        // Return a static prop_info (this is a simplification)
++        static thread_local prop_info pi;
++        strncpy(pi.name, it->first.c_str(), PROP_NAME_MAX - 1);
++        pi.name[PROP_NAME_MAX - 1] = '\0';
++        strncpy(pi.value, it->second.c_str(), PROP_VALUE_MAX - 1);
++        pi.value[PROP_VALUE_MAX - 1] = '\0';
++        pi.serial = 1;
++        return &pi;
++    }
++    return nullptr;
++}
++
++// Get property value directly
++extern "C" int __system_property_get(const char* name, char* value) {
++    if (!name || !value) return 0;
++
++    auto it = fake_properties.find(name);
++    if (it != fake_properties.end()) {
++        strncpy(value, it->second.c_str(), PROP_VALUE_MAX - 1);
++        value[PROP_VALUE_MAX - 1] = '\0';
++        return strlen(value);
++    }
++    value[0] = '\0';
++    return 0;
++}
++
++// Read property (old API)
++extern "C" int __system_property_read(const prop_info* pi, char* name, char* value) {
++    if (!pi) return 0;
++
++    if (name) {
++        strncpy(name, pi->name, PROP_NAME_MAX - 1);
++        name[PROP_NAME_MAX - 1] = '\0';
++    }
++    if (value) {
++        strncpy(value, pi->value, PROP_VALUE_MAX - 1);
++        value[PROP_VALUE_MAX - 1] = '\0';
++        return strlen(value);
++    }
++    return 0;
++}
++
++// Read property with callback (new API - already implemented in some versions)
++extern "C" void __system_property_read_callback(
++    const prop_info* pi,
++    void (*callback)(void* cookie, const char* name, const char* value, uint32_t serial),
++    void* cookie
++) {
++    if (!pi || !callback) return;
++    callback(cookie, pi->name, pi->value, pi->serial);
++}
++
++// CRITICAL: Iterate through all properties
++// This is what libpairipcore.so needs for device verification
++extern "C" int __system_property_foreach(
++    void (*propfn)(const prop_info* pi, void* cookie),
++    void* cookie
++) {
++    if (!propfn) return -1;
++    if (!__system_property_area__) return -1;
++
++    static thread_local prop_info pi;
++
++    for (const auto& [key, val] : fake_properties) {
++        strncpy(pi.name, key.c_str(), PROP_NAME_MAX - 1);
++        pi.name[PROP_NAME_MAX - 1] = '\0';
++        strncpy(pi.value, val.c_str(), PROP_VALUE_MAX - 1);
++        pi.value[PROP_VALUE_MAX - 1] = '\0';
++        pi.serial = 1;
++
++        propfn(&pi, cookie);
++    }
++    return 0;
++}
++
++// Get property serial (for change detection)
++extern "C" uint32_t __system_property_serial(const prop_info* pi) {
++    return pi ? pi->serial : 0;
++}
++
++// Wait for property change (stub - just returns immediately)
++extern "C" bool __system_property_wait(
++    const prop_info* pi,
++    uint32_t old_serial,
++    uint32_t* new_serial_ptr,
++    const struct timespec* relative_timeout
++) {
++    if (new_serial_ptr && pi) {
++        *new_serial_ptr = pi->serial;
++    }
++    return true;
++}
++
++// ============================================================================
++// Update the shimmed symbols table to use real implementations
++// ============================================================================
++
+ // In the shimmed_symbols array, replace:
+-// {"__system_property_foreach", (void*)stub},
+-// {"__system_property_read", (void*)stub},
++// {"__system_property_foreach", (void*)__system_property_foreach},
++// {"__system_property_read", (void*)__system_property_read},
++// {"__system_property_find", (void*)__system_property_find},
++// {"__system_property_get", (void*)__system_property_get},
++// {"__system_property_serial", (void*)__system_property_serial},
++// {"__system_property_wait", (void*)__system_property_wait},
+
+ // Update shimmed_symbols.cpp or wherever the symbol table is defined
