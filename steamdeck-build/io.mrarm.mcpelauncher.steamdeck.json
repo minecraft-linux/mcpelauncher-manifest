@@ -1,0 +1,193 @@
+{
+    "app-id": "io.mrarm.mcpelauncher",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "6.7",
+    "sdk": "org.kde.Sdk",
+    "sdk-extensions": [
+        "org.kde.Sdk.Extension.llvm17"
+    ],
+    "base": "io.qt.qtwebengine.BaseApp",
+    "base-version": "6.7",
+    "command": "mcpelauncher-ui-qt",
+    "rename-desktop-file": "mcpelauncher-ui-qt.desktop",
+    "rename-icon": "mcpelauncher-ui-qt",
+    "finish-args": [
+        "--share=ipc",
+        "--share=network",
+        "--socket=x11",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+        "--device=all",
+        "--talk-name=org.freedesktop.ScreenSaver",
+        "--env=QML2_IMPORT_PATH=/app/lib/qml:/app/qml",
+        "--env=QT_PLUGIN_PATH=/app/lib/plugins"
+    ],
+    "cleanup": [
+        "/include",
+        "/lib/cmake",
+        "/lib/pkgconfig",
+        "*.a",
+        "*.la"
+    ],
+    "modules": [
+        {
+            "name": "libdecor",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Ddemo=false",
+                "-Ddbus=disabled"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.freedesktop.org/libdecor/libdecor.git",
+                    "tag": "0.2.2"
+                }
+            ]
+        },
+        {
+            "name": "glfw",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DBUILD_SHARED_LIBS=ON",
+                "-DGLFW_BUILD_EXAMPLES=OFF",
+                "-DGLFW_BUILD_TESTS=OFF",
+                "-DGLFW_BUILD_DOCS=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/glfw/glfw.git",
+                    "tag": "3.4"
+                }
+            ]
+        },
+        {
+            "name": "protobuf",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-Dprotobuf_BUILD_TESTS=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/protocolbuffers/protobuf/releases/download/v3.12.3/protobuf-cpp-3.12.3.tar.gz",
+                    "sha256": "7c90b1c3d77d4b1f6d049c84c5c6bf5c5e0a5e893e0b8ee1f1b8d29e9bf6c8f7"
+                }
+            ]
+        },
+        {
+            "name": "libzip",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://libzip.org/download/libzip-1.7.1.tar.gz",
+                    "sha256": "0e2276c550c5a310d4ebf3a2c3dfc43fb3b4602a072ff6ee4f1b29f5e45e2b0e"
+                }
+            ]
+        },
+        {
+            "name": "nlohmann-json",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DJSON_BuildTests=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/nlohmann/json.git",
+                    "tag": "v3.11.2"
+                }
+            ]
+        },
+        {
+            "name": "curl",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DBUILD_SHARED_LIBS=ON",
+                "-DCURL_DISABLE_LDAP=ON",
+                "-DCURL_DISABLE_LDAPS=ON"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/curl/curl.git",
+                    "tag": "curl-8_4_0"
+                }
+            ]
+        },
+        {
+            "name": "msa-manifest",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/minecraft-linux/msa-manifest.git",
+                    "branch": "main"
+                }
+            ]
+        },
+        {
+            "name": "mcpelauncher-versiondb",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/minecraft-linux/mcpelauncher-versiondb.git",
+                    "branch": "ng"
+                }
+            ]
+        },
+        {
+            "name": "mcpelauncher-client",
+            "buildsystem": "cmake-ninja",
+            "build-options": {
+                "env": {
+                    "CC": "/usr/lib/sdk/llvm17/bin/clang",
+                    "CXX": "/usr/lib/sdk/llvm17/bin/clang++"
+                },
+                "prepend-path": "/usr/lib/sdk/llvm17/bin"
+            },
+            "config-opts": [
+                "-DGAMEWINDOW_SYSTEM=GLFW",
+                "-DENABLE_DEV_PATHS=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/minecraft-linux/mcpelauncher-manifest.git",
+                    "branch": "ng"
+                }
+            ]
+        },
+        {
+            "name": "mcpelauncher-ui-manifest",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DLAUNCHER_VERSION_NAME=SteamDeck-Unrestricted",
+                "-DLAUNCHER_VERSION_CODE=999",
+                "-DLAUNCHER_CHANGE_LOG=Steam Deck build with all version restrictions removed"
+            ],
+            "_comment": "STEAM DECK: Build without LAUNCHER_DISABLE_DEV_MODE to enable all versions",
+            "build-options": {
+                "cxxflags": "-ULAUNCHER_DISABLE_DEV_MODE"
+            },
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/minecraft-linux/mcpelauncher-ui-manifest.git",
+                    "branch": "ng"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "echo 'Patching to enable all versions by default...'",
+                        "sed -i 's/LAUNCHER_DISABLE_DEV_MODE/LAUNCHER_ENABLE_ALL_VERSIONS_DISABLED/g' mcpelauncher-ui-qt/CMakeLists.txt || true",
+                        "echo 'Patch applied successfully'"
+                    ]
+                }
+            ]
+        }
+    ]
+}

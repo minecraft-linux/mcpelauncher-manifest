@@ -1,0 +1,75 @@
+--- a/launchersettings.h
++++ b/launchersettings.h
+@@ -1,6 +1,10 @@
+ #ifndef LAUNCHERSETTINGS_H
+ #define LAUNCHERSETTINGS_H
+
++// STEAM DECK PATCH: Enable all versions by default
++// This removes version restrictions for maximum compatibility
++#undef LAUNCHER_DISABLE_DEV_MODE
++
+ #include <QSettings>
+ #include <QStandardPaths>
+
+@@ -47,9 +51,12 @@ public:
+     Q_PROPERTY(QString startupScript READ startupScript WRITE setStartupScript NOTIFY settingsChanged)
+     Q_PROPERTY(QString javaPath READ javaPath WRITE setJavaPath NOTIFY settingsChanged)
+     Q_PROPERTY(QString jarPath READ jarPath WRITE setJarPath NOTIFY settingsChanged)
+-    Q_PROPERTY(bool showBetaVersions READ showBetaVersions WRITE setShowBetaVersions NOTIFY settingsChanged)
+-    Q_PROPERTY(bool showUnverified READ showUnverified WRITE setShowUnverified NOTIFY settingsChanged)
+-    Q_PROPERTY(bool showUnsupported READ showUnsupported WRITE setShowUnsupported NOTIFY settingsChanged)
++
++    // STEAM DECK PATCH: Default these to true for unrestricted version access
++    Q_PROPERTY(bool showBetaVersions READ showBetaVersions WRITE setShowBetaVersions NOTIFY settingsChanged)  // Default: true
++    Q_PROPERTY(bool showUnverified READ showUnverified WRITE setShowUnverified NOTIFY settingsChanged)  // Default: true
++    Q_PROPERTY(bool showUnsupported READ showUnsupported WRITE setShowUnsupported NOTIFY settingsChanged)  // Default: true
++
+     Q_PROPERTY(QString arch READ arch WRITE setArch NOTIFY settingsChanged)
+
+     bool showBetaVersions() {
+@@ -57,7 +64,8 @@ public:
+             return false;
+         }
+         QVariant v = m_settings.value("showBetaVersions");
+-        return v.isNull() ? false : v.toBool();
++        // STEAM DECK PATCH: Default to true
++        return v.isNull() ? true : v.toBool();
+     }
+     void setShowBetaVersions(bool v) { m_settings.setValue("showBetaVersions", v); emit settingsChanged(); }
+
+@@ -66,7 +74,8 @@ public:
+             return false;
+         }
+         QVariant v = m_settings.value("showUnverified");
+-        return v.isNull() ? false : v.toBool();
++        // STEAM DECK PATCH: Default to true
++        return v.isNull() ? true : v.toBool();
+     }
+     void setShowUnverified(bool v) { m_settings.setValue("showUnverified", v); emit settingsChanged(); }
+
+@@ -75,7 +84,8 @@ public:
+             return false;
+         }
+         QVariant v = m_settings.value("showUnsupported");
+-        return v.isNull() ? false : v.toBool();
++        // STEAM DECK PATCH: Default to true
++        return v.isNull() ? true : v.toBool();
+     }
+     void setShowUnsupported(bool v) { m_settings.setValue("showUnsupported", v); emit settingsChanged(); }
+
+--- a/main.cpp
++++ b/main.cpp
+@@ -1,8 +1,10 @@
++// STEAM DECK PATCH: Ensure dev mode is never disabled
++#undef LAUNCHER_DISABLE_DEV_MODE
++
+ #include <QGuiApplication>
+ #include <QQmlApplicationEngine>
+ // ... rest of includes
+
+-#ifdef LAUNCHER_DISABLE_DEV_MODE
+-bool LauncherSettings::disableDevMode = 1;
+-#else
++// STEAM DECK PATCH: Always enable dev mode
+ bool LauncherSettings::disableDevMode = 0;
+-#endif
