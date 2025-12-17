@@ -89,7 +89,20 @@
 // OSX has arc4random_buf
 #define HAS_ARC4RANDOM_BUF 1
 #endif
-
+#ifndef HAVE_STRLCPY
+FILE* shim::freopen64(const char* filename, const char* mode, FILE* stream) {
+    return ::freopen(filename, mode, stream);
+}
+size_t strlcpy(char* dst, const char* src, size_t siz) {
+    size_t len = strlen(src);
+    if (siz > 0) {
+        size_t copy_len = (len >= siz) ? siz - 1 : len;
+        memcpy(dst, src, copy_len);
+        dst[copy_len] = '\0';
+    }
+    return len;
+}
+#endif
 using namespace shim;
 
 void shim::handle_runtime_error(const char *fmt, ...) {
@@ -351,7 +364,10 @@ char* shim::__strncat_chk(char *dst, const char *src, size_t n, size_t dst_len) 
 char* shim::__strncpy_chk(char* dst, const char* src, size_t len, size_t dst_len) {
   return strncpy(dst, src, len);
 }
-
+char* shim::__strlcpy_chk(char* dest, const char* src, size_t supplied_size, size_t /*dest_len_from_compiler*/) {
+    strlcpy(dest, src, supplied_size);
+    return dest;
+}
 char* shim::__strncpy_chk2(char* dst, const char* src, size_t n, size_t dst_len, size_t src_len) {
     return strncpy(dst, src, n);
 }
@@ -741,6 +757,7 @@ void shim::add_unistd_shimmed_symbols(std::vector<shim::shimmed_symbol> &list) {
         {"__write_chk", __write_chk},
         {"__recvfrom_chk", __recvfrom_chk},
         {"__sendto_chk", __sendto_chk},
+        {"freopen64", freopen64},
         {"write", WithErrnoUpdate(::write)},
         {"pipe", WithErrnoUpdate(::pipe)},
         {"alarm", WithErrnoUpdate(::alarm)},
@@ -895,6 +912,7 @@ void shim::add_string_shimmed_symbols(std::vector<shim::shimmed_symbol> &list) {
         {"__strcat_chk", __strcat_chk},
         {"__strncat_chk", __strncat_chk},
         {"__strncpy_chk", __strncpy_chk},
+        {"__strlcpy_chk", __strlcpy_chk},
         {"__strncpy_chk2", __strncpy_chk2},
         {"strlcpy", bionic::strlcpy},
         {"strcspn", ::strcspn},

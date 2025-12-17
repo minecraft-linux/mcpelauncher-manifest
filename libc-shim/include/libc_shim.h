@@ -28,4 +28,6 @@ namespace shim {
     extern std::vector<std::pair<std::string, std::string>> rewrite_filesystem_access;
 
     [[noreturn]] void handle_runtime_error(const char* fmt, ...);
+ FILE* freopen64(const char* filename, const char* mode, FILE* stream);
+ char* __strlcpy_chk(char* dest, const char* src, size_t supplied_size, size_t dest_len_from_compiler);
 }
