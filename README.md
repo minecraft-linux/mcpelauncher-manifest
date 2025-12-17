@@ -1,3 +1,5 @@
+Este repo contiene un fix creado por JavierC para funcionar las versiones a partir de la 1.21.30+
+
 # mcpelauncher
 
 An unstable unofficial launcher for the Android version of Minecraft: Bedrock Edition on linux and macOS.
