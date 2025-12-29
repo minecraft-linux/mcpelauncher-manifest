@@ -45,7 +45,7 @@
 	url = ../mcpelauncher-core.git
 [submodule "mcpelauncher-client"]
 	path = mcpelauncher-client
-	url = ../mcpelauncher-client.git
+	url = https://github.com/AndrewX98/mcpelauncher-client.git
 [submodule "arg-parser"]
 	path = arg-parser
 	url = ../arg-parser.git
@@ -66,7 +66,7 @@
 	url = ../android-support-headers.git
 [submodule "libc-shim"]
 	path = libc-shim
-	url = ../libc-shim.git
+	url = https://github.com/AndrewX98/libc-shim.git
 [submodule "mcpelauncher-linker"]
 	path = mcpelauncher-linker
 	url = ../mcpelauncher-linker.git
