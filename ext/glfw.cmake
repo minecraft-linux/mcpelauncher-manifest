@@ -5,9 +5,11 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
+set(GLFW_SOURCE_REVISION "446707b4d9558cd2ef3024622bad320728b974c2")
+
 FetchContent_Declare(
         glfw3_ext
-        URL "https://github.com/minecraft-linux/glfw/archive/446707b4d9558cd2ef3024622bad320728b974c2.zip"
+        URL "https://github.com/minecraft-linux/glfw/archive/${GLFW_SOURCE_REVISION}.zip"
 )
 
 

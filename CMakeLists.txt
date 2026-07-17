@@ -53,6 +53,148 @@ function(git_commit_hash DIR OUT_VAL)
 endfunction()
 git_commit_hash(${CMAKE_SOURCE_DIR} MANIFEST_GIT_COMMIT_HASH)
 
+function(git_full_commit_hash DIR OUT_VAL)
+    set(OUTPUT "")
+    if (GIT_EXEC)
+        execute_process(
+                COMMAND ${GIT_EXEC} -C ${DIR} rev-parse HEAD
+                RESULT_VARIABLE RESULT
+                OUTPUT_VARIABLE OUTPUT
+                ERROR_QUIET
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        if (NOT RESULT EQUAL 0)
+            set(OUTPUT "")
+        endif()
+    endif()
+    set(${OUT_VAL} "${OUTPUT}" PARENT_SCOPE)
+endfunction()
+
+function(git_describe_version DIR OUT_VAL)
+    set(OUTPUT "")
+    if (GIT_EXEC)
+        execute_process(
+                COMMAND ${GIT_EXEC} -C ${DIR} describe --tags --always
+                RESULT_VARIABLE RESULT
+                OUTPUT_VARIABLE OUTPUT
+                ERROR_QUIET
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        if (NOT RESULT EQUAL 0)
+            set(OUTPUT "")
+        endif()
+    endif()
+    set(${OUT_VAL} "${OUTPUT}" PARENT_SCOPE)
+endfunction()
+
+function(git_exact_tag DIR OUT_VAL)
+    set(OUTPUT "")
+    if (GIT_EXEC)
+        execute_process(
+                COMMAND ${GIT_EXEC} -C ${DIR} describe --tags --exact-match
+                RESULT_VARIABLE RESULT
+                OUTPUT_VARIABLE OUTPUT
+                ERROR_QUIET
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        if (NOT RESULT EQUAL 0)
+            set(OUTPUT "")
+        endif()
+    endif()
+    set(${OUT_VAL} "${OUTPUT}" PARENT_SCOPE)
+endfunction()
+
+function(git_worktree_dirty DIR OUT_VAL)
+    set(OUTPUT "")
+    set(DIRTY "")
+    if (GIT_EXEC)
+        execute_process(
+                COMMAND ${GIT_EXEC} -C ${DIR} status --porcelain --untracked-files=no
+                RESULT_VARIABLE RESULT
+                OUTPUT_VARIABLE OUTPUT
+                ERROR_QUIET
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        if (RESULT EQUAL 0)
+            if (OUTPUT STREQUAL "")
+                set(DIRTY "false")
+            else()
+                set(DIRTY "true")
+            endif()
+        endif()
+    endif()
+    set(${OUT_VAL} "${DIRTY}" PARENT_SCOPE)
+endfunction()
+
+function(git_dependency_entries DIR OUT_VAL)
+    set(ENTRIES "")
+    if (GIT_EXEC)
+        execute_process(
+                COMMAND ${GIT_EXEC} -C ${DIR} ls-tree HEAD
+                RESULT_VARIABLE RESULT
+                OUTPUT_VARIABLE OUTPUT
+                ERROR_QUIET
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        if (RESULT EQUAL 0)
+            string(REPLACE "\n" ";" LINES "${OUTPUT}")
+            foreach(LINE IN LISTS LINES)
+                if (LINE MATCHES "^160000[ \t]+commit[ \t]+([0-9a-f]+)[\t](.+)$")
+                    set(PINNED_REVISION "${CMAKE_MATCH_1}")
+                    set(DEPENDENCY_PATH "${CMAKE_MATCH_2}")
+                    set(ACTUAL_REVISION "")
+                    set(DEPENDENCY_DIRTY "")
+                    if (EXISTS "${DIR}/${DEPENDENCY_PATH}")
+                        git_full_commit_hash("${DIR}/${DEPENDENCY_PATH}" ACTUAL_REVISION)
+                        git_worktree_dirty("${DIR}/${DEPENDENCY_PATH}" DEPENDENCY_DIRTY)
+                    endif()
+                    set(ENTRIES "${ENTRIES}    {\"source/${DEPENDENCY_PATH}\", \"${ACTUAL_REVISION}\", \"${PINNED_REVISION}\", \"${DEPENDENCY_DIRTY}\"},\n")
+                endif()
+            endforeach()
+        endif()
+    endif()
+    set(${OUT_VAL} "${ENTRIES}" PARENT_SCOPE)
+endfunction()
+
+git_full_commit_hash(${CMAKE_SOURCE_DIR} MANIFEST_GIT_COMMIT_HASH_FULL)
+git_describe_version(${CMAKE_SOURCE_DIR} MANIFEST_GIT_DESCRIBE)
+git_exact_tag(${CMAKE_SOURCE_DIR} MANIFEST_VERSION)
+git_worktree_dirty(${CMAKE_SOURCE_DIR} MANIFEST_GIT_WORKTREE_DIRTY)
+git_dependency_entries(${CMAKE_SOURCE_DIR} MANIFEST_DEPENDENCY_REVISION_ENTRIES)
+
+# The manifest can be built standalone. Only identify a containing source
+# baseline when it tracks this manifest directory as a gitlink.
+set(SOURCE_BASELINE_ROOT_GIT_COMMIT_HASH "")
+set(SOURCE_BASELINE_ROOT_GIT_DESCRIBE "")
+set(SOURCE_BASELINE_ROOT_VERSION "")
+set(SOURCE_BASELINE_ROOT_GIT_WORKTREE_DIRTY "")
+if (GIT_EXEC)
+    get_filename_component(MANIFEST_PARENT_DIR "${CMAKE_SOURCE_DIR}/.." ABSOLUTE)
+    execute_process(
+            COMMAND ${GIT_EXEC} -C ${MANIFEST_PARENT_DIR} rev-parse --show-toplevel
+            RESULT_VARIABLE ROOT_RESULT
+            OUTPUT_VARIABLE SOURCE_BASELINE_ROOT_DIR
+            ERROR_QUIET
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    if (ROOT_RESULT EQUAL 0)
+        file(RELATIVE_PATH MANIFEST_ROOT_RELATIVE_PATH "${SOURCE_BASELINE_ROOT_DIR}" "${CMAKE_SOURCE_DIR}")
+        execute_process(
+                COMMAND ${GIT_EXEC} -C ${SOURCE_BASELINE_ROOT_DIR} ls-files --stage -- ${MANIFEST_ROOT_RELATIVE_PATH}
+                RESULT_VARIABLE GITLINK_RESULT
+                OUTPUT_VARIABLE GITLINK_ENTRY
+                ERROR_QUIET
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        if (GITLINK_RESULT EQUAL 0 AND GITLINK_ENTRY MATCHES "^160000[ \t]")
+            git_full_commit_hash(${SOURCE_BASELINE_ROOT_DIR} SOURCE_BASELINE_ROOT_GIT_COMMIT_HASH)
+            git_describe_version(${SOURCE_BASELINE_ROOT_DIR} SOURCE_BASELINE_ROOT_GIT_DESCRIBE)
+            git_exact_tag(${SOURCE_BASELINE_ROOT_DIR} SOURCE_BASELINE_ROOT_VERSION)
+            git_worktree_dirty(${SOURCE_BASELINE_ROOT_DIR} SOURCE_BASELINE_ROOT_GIT_WORKTREE_DIRTY)
+        endif()
+    endif()
+endif()
+
 option(BUILD_CLIENT "Enables building of the client launcher." ON)
 option(BUILD_UI "Enables building of the client ui requires qt." ON)
 option(BUILD_TESTING "Build tests for cll-telemetry (requires GTest)" OFF)
