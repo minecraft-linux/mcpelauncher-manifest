@@ -78,3 +78,25 @@ The old wiki of readthedocs is obsolete.
 ### 4. Issue #1631: `Unable to login - Error=MissingDroidguard`
 - **Cause**: SafetyNet / Play Integrity attestation requires Droidguard VM which is unavailable in the emulator layer.
 - **Fix**: Use Direct MSA Authentication (`login_msa`) and clear cached tokens in `~/.local/share/mcpelauncher/pass.token`.
+
+### 5. Audio Output Failure (`unable to open slave` / PipeWire / Window Focus Sound Loss)
+- **Cause**: OpenAL / PulseAudio audio context unbinds when game window loses focus.
+- **Fix**: Launch with OpenAL driver priority:
+  ```bash
+  export ALSOFT_DRIVERS="pulse,alsa,jack"
+  ```
+
+### 6. Controller Axis Drift & Deadzone Miscalibration
+- **Cause**: Raw SDL2 joystick input missing default axis deadzones.
+- **Fix**: Set `SDL_GAMECONTROLLERCONFIG` mapping with 15% stick deadzone in launcher settings.
+
+### 7. Qt5 QPA Plugin Failure (`Could not load the Qt platform plugin "xcb"`)
+- **Cause**: Missing Qt5 XCB libraries on Ubuntu / Debian / Linux Mint.
+- **Fix**: Install required Qt runtime libraries:
+  ```bash
+  sudo apt install -y qttools5-dev-tools qtbase5-dev libqt5svg5-dev libxcb-xinerama0
+  ```
+
+### 8. Unverified Version Download Failure (Minecraft 1.21.x+)
+- **Cause**: Google Play Integrity API hash mismatch on new releases.
+- **Fix**: Toggle "Show unverified versions" in Dev tab or use `mcpelauncher-apkinfo` manual import.
