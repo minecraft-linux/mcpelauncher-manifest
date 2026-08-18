@@ -55,3 +55,48 @@ The old wiki of readthedocs is obsolete.
 [AppImage (Deprecated) and DMG Files](https://github.com/minecraft-linux/mcpelauncher-manifest/releases/tag/nightly)
 [Debian, Ubuntu and Fedora Packages (ca. 1-24h delay)](https://github.com/minecraft-linux/pkg?tab=readme-ov-file#nightly)
 [flatpak install flathub-beta io.mrarm.mcpelauncher (ca. 1-24h delay)](https://discourse.flathub.org/t/how-to-use-flathub-beta/2111)
+
+
+## Common Issue Solutions & Patch Fixes
+
+### 1. Issue #1970: `[Crash] dlopen failed: cannot locate symbol "pthread_sigmask" on Minecraft 1.26.x`
+- **Cause**: Minecraft 1.26.x introduced calls to `pthread_sigmask` which is provided by Android Bionic libc.
+- **Fix**: Ensure `libc-shim` exports `pthread_sigmask` mapped to `sigprocmask`.
+
+### 2. Issue #1974: `Exit Code: 6` on Linux Mint / Ubuntu
+- **Cause**: Missing 32-bit/64-bit Mesa EGL/GLX drivers or DRI initialization failure.
+- **Fix**: Install required drivers via:
+  ```bash
+  sudo apt update && sudo apt install -y libgl1-mesa-dri libgl1-mesa-glx libegl1-mesa libvulkan1
+  ```
+  Or launch with `MESA_GL_VERSION_OVERRIDE=4.5COMPAT`.
+
+### 3. Issue #1973 & #1972: Game Freezing on Menu or World Join
+- **Cause**: RenderDragon multi-threaded rendering deadlock with ImGui menu overlays.
+- **Fix**: Disable multi-threaded rendering in `options.txt` (`gfx_multithreaded_renderer:0`) or enable keyboard autofocus patch in `mcpelauncher-client-settings.txt`.
+
+### 4. Issue #1631: `Unable to login - Error=MissingDroidguard`
+- **Cause**: SafetyNet / Play Integrity attestation requires Droidguard VM which is unavailable in the emulator layer.
+- **Fix**: Use Direct MSA Authentication (`login_msa`) and clear cached tokens in `~/.local/share/mcpelauncher/pass.token`.
+
+### 5. Audio Output Failure (`unable to open slave` / PipeWire / Window Focus Sound Loss)
+- **Cause**: OpenAL / PulseAudio audio context unbinds when game window loses focus.
+- **Fix**: Launch with OpenAL driver priority:
+  ```bash
+  export ALSOFT_DRIVERS="pulse,alsa,jack"
+  ```
+
+### 6. Controller Axis Drift & Deadzone Miscalibration
+- **Cause**: Raw SDL2 joystick input missing default axis deadzones.
+- **Fix**: Set `SDL_GAMECONTROLLERCONFIG` mapping with 15% stick deadzone in launcher settings.
+
+### 7. Qt5 QPA Plugin Failure (`Could not load the Qt platform plugin "xcb"`)
+- **Cause**: Missing Qt5 XCB libraries on Ubuntu / Debian / Linux Mint.
+- **Fix**: Install required Qt runtime libraries:
+  ```bash
+  sudo apt install -y qttools5-dev-tools qtbase5-dev libqt5svg5-dev libxcb-xinerama0
+  ```
+
+### 8. Unverified Version Download Failure (Minecraft 1.21.x+)
+- **Cause**: Google Play Integrity API hash mismatch on new releases.
+- **Fix**: Toggle "Show unverified versions" in Dev tab or use `mcpelauncher-apkinfo` manual import.
