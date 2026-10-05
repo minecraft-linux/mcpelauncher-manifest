@@ -50,6 +50,10 @@ all|You may be unable to join worlds hosted by this launcher using Xbox live fri
 Please check our wiki https://minecraft-linux.github.io for information about compiling or installing this launcher.
 The old wiki of readthedocs is obsolete.
 
+# Troubleshooting
+
+See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for step-by-step fixes to common problems.
+
 # Nightly Prebuilds
 
 [AppImage (Deprecated) and DMG Files](https://github.com/minecraft-linux/mcpelauncher-manifest/releases/tag/nightly)
