@@ -25,6 +25,12 @@ linux glibc|arm64|armv8 CPU, pulseaudio and OpenGL ES 2.0 or newer|1.13.0 - 1.20
 linux glibc|arm64|armv8 CPU, pulseaudio and OpenGL ES 3.0 or newer|1.13.0 - 1.21.73
 macOS 11.0 - latest|arm64|apple m series CPU (Experimental, modding limitations)|1.19.70 - 1.21.73
 
+## Apple Silicon compatibility status
+
+Apple Silicon support remains experimental. Minecraft 1.26.45.1 can currently be downloaded and its ARM64 libraries begin loading, but it is **not playable yet**: after the current missing libc imports are supplied, the process crashes during `libPlayFabMultiplayer.so` initialization. The tracked loader work is in [mcpelauncher-core#24](https://github.com/minecraft-linux/mcpelauncher-core/pull/24), with the remaining crash tracked in [issue #2007](https://github.com/minecraft-linux/mcpelauncher-manifest/issues/2007).
+
+Please include the complete game log, macOS version, Mac model, selected graphics backend, and exact Minecraft version when reporting Apple Silicon issues. Do not report 1.26.x as supported until the PlayFab constructor crash is resolved.
+
 ## Versions 1.20.30+ will not have hardware rendering on older hardware (GLES 3.0 is now required)
 
 Read Issue https://github.com/minecraft-linux/mcpelauncher-manifest/issues/933 to force software rendering to be able to run them anyway
